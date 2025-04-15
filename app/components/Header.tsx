@@ -17,6 +17,7 @@ import { CloseButton } from "@headlessui/react"
 import { FaChevronDown } from "react-icons/fa";
 import { IoSunnyOutline } from "react-icons/io5";
 import { BsFillMoonStarsFill } from "react-icons/bs";
+import { useTheme } from "next-themes";
 
 //Mobile navitem
 function MobileNavItem({
@@ -123,3 +124,4 @@ function DesktopNavigation(props: React.ComponentPropsWithoutRef<"nav">) {
     </nav>
   );
 }
+
