@@ -26,7 +26,7 @@ export default function Home() {
         </div>
         <div className="mt-6 flex gap-6">
           <SocialLink
-            href="#"
+            href="https://www.instagram.com/shyamguna77/"
             aria-label="Follow on Instagram"
             icon={FaInstagram}
           />
