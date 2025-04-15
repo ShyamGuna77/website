@@ -3,6 +3,9 @@ import { Sun } from "lucide-react";
 import { Container } from "./components/Container";
 import { SocialLink } from "./components/SocialIcon";
 import { FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaLinkedin } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -22,10 +25,26 @@ export default function Home() {
           </p>
         </div>
         <div className="mt-6 flex gap-6">
-          <SocialLink href = "#" aria-label="Follow on Instagram" icon={FaInstagram}/>
-
-          
-
+          <SocialLink
+            href="#"
+            aria-label="Follow on Instagram"
+            icon={FaInstagram}
+          />
+          <SocialLink
+            href="https://www.linkedin.com/in/shyamguna77/"
+            aria-label="Follow on Linkedin"
+            icon={FaLinkedin}
+          />
+          <SocialLink
+            href="https://github.com/ShyamGuna77"
+            aria-label="Follow on Github"
+            icon={FaGithub}
+          />
+          <SocialLink
+            href="https://x.com/Hikki_7d"
+            aria-label="Follow on X"
+            icon={FaXTwitter}
+          />
         </div>
       </Container>
     </>
