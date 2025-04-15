@@ -79,7 +79,7 @@ const About = () => {
             </div>
           </div>
           <div className="lg:pl-20">
-            <ul role = "list" className="space-y-5 hover:text-blue-500">
+            <ul role="list" className="space-y-5 hover:text-blue-500">
               <SocialText href="https://x.com/Hikki_7d" icon={FaXTwitter}>
                 Follow on X
               </SocialText>
@@ -97,6 +97,14 @@ const About = () => {
               </SocialText>
               <SocialText href="https://github.com/ShyamGuna77" icon={FaGithub}>
                 Follow on Github
+              </SocialText>
+
+              <SocialText
+                href="mailto:shyamprasad8247@gmail.com"
+                icon={MdMail}
+                className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
+              >
+                shyamprasad8247@gmail.com
               </SocialText>
             </ul>
           </div>
