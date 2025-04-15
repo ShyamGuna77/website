@@ -80,16 +80,22 @@ const About = () => {
           </div>
           <div className="lg:pl-20">
             <ul>
-              <SocialText href="#" icon={FaXTwitter}>
+              <SocialText href="https://x.com/Hikki_7d" icon={FaXTwitter}>
                 Follow on X
               </SocialText>
-              <SocialText href="#" icon={FaInstagram}>
+              <SocialText
+                href="https://www.instagram.com/shyamguna77/"
+                icon={FaInstagram}
+              >
                 Follow on Instagram
               </SocialText>
-              <SocialText href="#" icon={FaLinkedin}>
+              <SocialText
+                href="https://www.linkedin.com/in/shyamguna77/"
+                icon={FaLinkedin}
+              >
                 Follow on Linkedn
               </SocialText>
-              <SocialText href="#" icon={FaGithub}>
+              <SocialText href="https://github.com/ShyamGuna77" icon={FaGithub}>
                 Follow on Github
               </SocialText>
             </ul>
