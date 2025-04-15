@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation"
 import clsx from "clsx"
 import { Container } from "./Container"
 import avatar from '@/app/Images/CloseDp.png'
+import SPD from  "@/app/Images/SPD.png"
 import { CloseButton } from "@headlessui/react"
 import { FaChevronDown } from "react-icons/fa";
 import { IoSunnyOutline } from "react-icons/io5";
@@ -118,8 +119,7 @@ function DesktopNavigation(props: React.ComponentPropsWithoutRef<"nav">) {
         <NavItem href="/about">About</NavItem>
         <NavItem href="/articles">Articles</NavItem>
         <NavItem href="/projects">Projects</NavItem>
-        <NavItem href="/speaking">Speaking</NavItem>
-        <NavItem href="/uses">Uses</NavItem>
+        <NavItem href="/playground">PlayGround</NavItem>
       </ul>
     </nav>
   );
@@ -192,17 +192,20 @@ function Avatar({
     >
       <Image
         src={avatar}
-        alt=""
+        alt="SPD PHOTO"
         sizes={large ? '4rem' : '2.25rem'}
         className={clsx(
           'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
           large ? 'h-16 w-16' : 'h-9 w-9',
         )}
+        style={{ position: 'relative', top: '0.1rem' }}
         priority
       />
     </Link>
   )
 }
+
+
 
 
 export function Header() {
