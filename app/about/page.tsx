@@ -2,8 +2,8 @@
 
 import {type Metadata } from "next"
 import Image from "next/image"
-import Link from "next/link"
-import clsx from "clsx"
+
+
 import { Container } from "../components/Container"
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -79,7 +79,7 @@ const About = () => {
             </div>
           </div>
           <div className="lg:pl-20">
-            <ul>
+            <ul role = "list" className="space-y-5 hover:text-blue-500">
               <SocialText href="https://x.com/Hikki_7d" icon={FaXTwitter}>
                 Follow on X
               </SocialText>
