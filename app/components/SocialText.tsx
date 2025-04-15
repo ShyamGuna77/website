@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import clsx from "clsx";
 
-export function SocialLink({
+export function SocialText({
   className,
   href,
   children,
