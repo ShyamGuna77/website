@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 
 
 'use client'
@@ -13,7 +14,7 @@ import { usePathname } from "next/navigation"
 import clsx from "clsx"
 import { Container } from "./Container"
 import avatar from '@/app/Images/CloseDp.png'
-import SPD from  "@/app/Images/SPD.png"
+// import SPD from  "@/app/Images/SPD.png"
 import { CloseButton } from "@headlessui/react"
 import { FaChevronDown } from "react-icons/fa";
 import { IoSunnyOutline } from "react-icons/io5";

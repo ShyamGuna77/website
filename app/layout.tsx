@@ -15,9 +15,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shyam Guna",
-  description: "Shyam Guna , Full Stack developer",
-};
+  title: {
+    template: '%s - Shyam Guna',
+    default:
+      'Shyam Guna - Software developer, Otaku, and Video Gamer',
+  },
+  description:
+    'I’m Shyam, a software developer based in India.',
+  alternates: {
+    types: {
+      'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
+    },
+  },
+}
 
 export default function RootLayout({
   children,
