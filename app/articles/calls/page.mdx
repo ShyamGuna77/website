@@ -1,14 +1,11 @@
-
 import Callout from "../../components/Callout";
-
-
 import { ArticleLayout } from "../../components/ArticleLayout";
 
 export const article = {
   author: 'Shyam Guna',
   date: '2025-04-19',
-  title: 'callout',
-  description: 'This is my first article using MDX in Next.js - exploring the possibilities of MDX in a portfolio site.',
+  title: 'CSS Grid Mental Model: Layout Like a Pro',
+  description: 'A practical breakdown of Josh W. Comeau’s CSS Grid mental model using styled callouts and examples in MDX.',
 };
 
 export const metadata = {
@@ -20,51 +17,115 @@ export default (props) => <ArticleLayout article={article} {...props} />;
 
 
 
-# Testing Callouts
+Let’s explore  CSS Grid mental model — one that helped me finally understand layout properly. This blog uses callouts to emphasize core ideas and common pitfalls.
 
-This is a regular paragraph in MDX to see the base styling. Make sure this looks clean and readable.
+---
 
-## Here’s a Tip
+## Think of Grid as a Canvas, Not a Table
 
-<Callout type="tip" title="Did you know?">
-  You can use Tailwind and MDX to create beautiful blogs effortlessly.
-   ```js
-  // ❌ Bad Practice
-  const apiKey = "my-secret-api-key";
-  fetch(`https://api.example.com/data?key=${apiKey}`);
-  ```
+Grid isn't just rows and columns. It's more like a flexible, invisible canvas where you draw **lines** that content snaps to.
+
+<Callout type="tip" title="Visualize it like graph paper">
+  Instead of thinking in terms of "columns", think in terms of **grid lines**. Items are placed between these lines.
 </Callout>
 
-## Here’s a Warning
+```css
+.container {
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+}
+```
 
-<Callout type="warning" title="Be Careful">
-   Avoid exposing secrets directly in your code.
+This creates 3 columns — but also 4 vertical grid lines.
 
-  ```js
-  // ❌ Bad Practice
-  const apiKey = "my-secret-api-key";
-  fetch(`https://api.example.com/data?key=${apiKey}`);
-  ```
+---
+
+## Items Don’t Automatically Fill Cells
+
+A common misconception is that items automatically fall into "cells". But grid items are **placed between lines**.
+
+```css
+.item {
+  grid-column: 2 / 4;
+}
+```
+
+This places the item from line 2 up to (but not including) line 4.
+
+<Callout type="warning" title="Be mindful of the lines">
+  `grid-column: 2 / 4` means start at line 2, end before line 4 — **not** columns 2 to 4.
 </Callout>
 
-## Here’s a Danger
+---
 
-<Callout type="danger" title="Don't do this">
-  Never expose your API keys in frontend code. Use environment variables instead.
-   ```js
-  // ❌ Bad Practice
-  const apiKey = "my-secret-api-key";
-  fetch(`https://api.example.com/data?key=${apiKey}`);
-  ```
+## Implicit vs. Explicit Grids
+
+Grid will auto-create rows or columns when needed — these are **implicit tracks**.
+
+<Callout type="info" title="Explicit vs Implicit?">
+  An explicit grid is defined by you. Implicit tracks are created when content spills over the declared grid.
 </Callout>
 
-## Here’s Some Info
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 
-<Callout type="info" title="Heads up!">
-  This page is powered by MDX and TailwindCSS, which gives you full control over styling.
-   ```js
-  // ❌ Bad Practice
-  const apiKey = "my-secret-api-key";
-  fetch(`https://api.example.com/data?key=${apiKey}`);
-  ```
+.item {
+  grid-row: 5;
+}
+```
+
+Even if you didn’t define 5 rows, Grid will create them.
+
+---
+
+## Named Lines for Better Readability
+
+You can name your lines to make your layout easier to read and maintain.
+
+```css
+.container {
+  grid-template-columns: [start] 1fr [middle] 2fr [end];
+}
+
+.item {
+  grid-column: start / middle;
+}
+```
+
+<Callout type="tip" title="Cleaner code with named lines">
+  Naming your lines adds semantics to your layout and makes it easier to manage at scale.
 </Callout>
+
+---
+
+## Never Do This
+
+<Callout type="danger" title="Avoid this trap!">
+  Don’t rely on content order or guess where items will fall — explicitly place them using `grid-column` and `grid-row`.
+</Callout>
+
+```css
+/* ❌ Bad Practice */
+.item {
+  grid-column: span 2;
+}
+```
+
+---
+
+## Final Thoughts
+
+The Grid mental model helps you:
+
+- Visualize layouts before writing code
+- Understand implicit behavior
+- Write more intentional, maintainable CSS
+
+<Callout type="info" title="Resources">
+  Want to go deeper? Check out Josh W. Comeau’s [CSS for JS Developers](https://courses.joshwcomeau.com/css-for-js) course — it’s loaded with insight like this.
+</Callout>
+
+This blog blends practical CSS Grid insights with Tailwind-styled callouts for visual clarity. You now have a mental model — go build something beautiful!
