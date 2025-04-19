@@ -1,12 +1,17 @@
-// next.config.js
-const withMDX = require("@next/mdx")({
+
+
+import rehypePrism from '@mapbox/rehype-prism'
+import nextMDX from '@next/mdx'
+import remarkGfm from 'remark-gfm'
+
+const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
-    // If you use remark-gfm, you'll need to add it here
-    remarkPlugins: [],
-    rehypePlugins: [],
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypePrism],
   },
-});
+})
+
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
