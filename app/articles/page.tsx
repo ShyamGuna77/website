@@ -40,20 +40,18 @@ export const metadata: Metadata = {
 };
 
 
-export  const ArticlesIndex = async () => {
-  let articles = await getAllArticles()
+export default async function ArticlesIndex() {
+  const articles = await getAllArticles();
 
   return (
     <SimpleLayout
       title="Just a Dev Who loves to write Blogs about Tech,Movies..."
-      intro="A collection of my
-      long-form thoughts — on code, system design, anime, tech culture, and
-      everything I’m learning along the way. All in the order they happened."
+      intro="A collection of my long-form thoughts — on code, system design, anime, tech culture, and everything I’m learning along the way. All in the order they happened."
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-        <div className='flex max-w-3xl flex-col space-y-16'>
+        <div className="flex max-w-3xl flex-col space-y-16">
           {articles.map((article) => (
-            <Article key = {article.slug} article = {article} />
+            <Article key={article.slug} article={article} />
           ))}
         </div>
       </div>

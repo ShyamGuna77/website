@@ -1,8 +1,11 @@
+
+"use client";
+
 import { useContext } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { AppContext } from "../Providers";
 import { Container } from "./Container";
-import {type ArticleWithSlug } from "@/lib/articles";
+import { type ArticleWithSlug } from "@/lib/articles";
 import { formatDate } from "@/lib/formatDate";
 import clsx from "clsx";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -12,7 +15,6 @@ function Prose({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
     <div className={clsx(className, "prose dark:prose-invert")} {...props} />
   );
 }
-
 
 export function ArticleLayout({
   article,
