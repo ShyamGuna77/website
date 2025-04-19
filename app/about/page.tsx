@@ -36,7 +36,7 @@ const About = () => {
                 alt="A Anime based picture of mine (goood looking )"
                 sizes="(min-width:1024px) 32rem , 20rem"
                 className="aspect-square rotate-3 rounded-2xl bg-zimc-100
-            object-cover object-top dark:bg-zinc-800"
+            object-cover object-top dark:bg-zinc-800  dark:shadow-[0_10px_20px_rgba(59,130,246,0.5)] shadow-2xl shadow-blue-300"
               />
             </div>
           </div>
