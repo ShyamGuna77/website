@@ -1,0 +1,70 @@
+
+import Callout from "../../components/Callout";
+
+
+import { ArticleLayout } from "../../components/ArticleLayout";
+
+export const article = {
+  author: 'Shyam Guna',
+  date: '2025-04-19',
+  title: 'callout',
+  description: 'This is my first article using MDX in Next.js - exploring the possibilities of MDX in a portfolio site.',
+};
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+};
+
+export default (props) => <ArticleLayout article={article} {...props} />;
+
+
+
+# Testing Callouts
+
+This is a regular paragraph in MDX to see the base styling. Make sure this looks clean and readable.
+
+## Here’s a Tip
+
+<Callout type="tip" title="Did you know?">
+  You can use Tailwind and MDX to create beautiful blogs effortlessly.
+   ```js
+  // ❌ Bad Practice
+  const apiKey = "my-secret-api-key";
+  fetch(`https://api.example.com/data?key=${apiKey}`);
+  ```
+</Callout>
+
+## Here’s a Warning
+
+<Callout type="warning" title="Be Careful">
+   Avoid exposing secrets directly in your code.
+
+  ```js
+  // ❌ Bad Practice
+  const apiKey = "my-secret-api-key";
+  fetch(`https://api.example.com/data?key=${apiKey}`);
+  ```
+</Callout>
+
+## Here’s a Danger
+
+<Callout type="danger" title="Don't do this">
+  Never expose your API keys in frontend code. Use environment variables instead.
+   ```js
+  // ❌ Bad Practice
+  const apiKey = "my-secret-api-key";
+  fetch(`https://api.example.com/data?key=${apiKey}`);
+  ```
+</Callout>
+
+## Here’s Some Info
+
+<Callout type="info" title="Heads up!">
+  This page is powered by MDX and TailwindCSS, which gives you full control over styling.
+   ```js
+  // ❌ Bad Practice
+  const apiKey = "my-secret-api-key";
+  fetch(`https://api.example.com/data?key=${apiKey}`);
+  ```
+</Callout>

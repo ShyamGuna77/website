@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -44,7 +43,6 @@
   --font-size-9xl: 8rem;
   --font-size-9xl--line-height: 1;
 }
-
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -153,9 +151,6 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-
-
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -165,9 +160,8 @@
   }
 }
 
-
 /* Code block container */
-pre[class*='language-'] {
+pre[class*="language-"] {
   @apply text-zinc-100 bg-zinc-900 p-4 rounded-lg overflow-x-auto leading-loose text-sm font-mono my-6;
 }
 
@@ -226,8 +220,7 @@ pre[class*='language-'] {
   @apply text-sky-300;
 }
 
-
-pre[class*='language-'] {
+pre[class*="language-"] {
   @apply text-zinc-100 bg-zinc-900 p-4 rounded-lg overflow-x-auto leading-loose text-sm font-mono my-6;
 }
 
@@ -285,25 +278,24 @@ pre[class*='language-'] {
 .language-css .token.function {
   @apply text-sky-300;
 }
-
 
 /* Base prose styles */
 .prose {
-  --tw-prose-body: #27272a;         /* zinc-800 */
-  --tw-prose-headings: #18181b;     /* zinc-900 */
-  --tw-prose-links: #2563eb;        /* blue-600 */
-  --tw-prose-bold: #18181b;         /* zinc-900 */
-  --tw-prose-counters: #a1a1aa;     /* zinc-400 */
+  --tw-prose-body: #27272a; /* zinc-800 */
+  --tw-prose-headings: #18181b; /* zinc-900 */
+  --tw-prose-links: #2563eb; /* blue-600 */
+  --tw-prose-bold: #18181b; /* zinc-900 */
+  --tw-prose-counters: #a1a1aa; /* zinc-400 */
   --tw-prose-bullets: #a1a1aa;
-  --tw-prose-hr: #d4d4d8;           /* zinc-300 */
-  --tw-prose-quotes: #71717a;       /* zinc-500 */
+  --tw-prose-hr: #d4d4d8; /* zinc-300 */
+  --tw-prose-quotes: #71717a; /* zinc-500 */
   --tw-prose-quote-borders: #d4d4d8;
-  --tw-prose-code: #db2777;         /* pink-600 */
-  --tw-prose-pre-code: #f4f4f5;     /* zinc-100 */
-  --tw-prose-pre-bg: #18181b;       /* zinc-900 */
+  --tw-prose-code: #db2777; /* pink-600 */
+  --tw-prose-pre-code: #f4f4f5; /* zinc-100 */
+  --tw-prose-pre-bg: #18181b; /* zinc-900 */
   --tw-prose-th-borders: #d4d4d8;
   --tw-prose-td-borders: #e4e4e7;
-  --tw-prose-invert-body: #d4d4d8;  /* zinc-300 */
+  --tw-prose-invert-body: #d4d4d8; /* zinc-300 */
   --tw-prose-invert-headings: #fafafa;
   --tw-prose-invert-links: #60a5fa; /* blue-400 */
   --tw-prose-invert-bold: #fafafa;
@@ -312,13 +304,12 @@ pre[class*='language-'] {
   --tw-prose-invert-hr: #3f3f46;
   --tw-prose-invert-quotes: #a1a1aa;
   --tw-prose-invert-quote-borders: #52525b;
-  --tw-prose-invert-code: #f472b6;  /* pink-400 */
+  --tw-prose-invert-code: #f472b6; /* pink-400 */
   --tw-prose-invert-pre-code: #e4e4e7;
   --tw-prose-invert-pre-bg: #27272a;
   --tw-prose-invert-th-borders: #52525b;
   --tw-prose-invert-td-borders: #3f3f46;
 }
-
 
 /* PROSE STYLING FOR BLOG (MDX) */
 
@@ -410,8 +401,6 @@ pre[class*='language-'] {
   @apply font-mono text-sm px-2 py-1 bg-zinc-200 dark:bg-zinc-700 rounded;
 }
 
-
-
 .prose pre code {
   @apply bg-transparent text-inherit p-0;
 }
@@ -424,15 +413,14 @@ pre[class*='language-'] {
   @apply text-sm text-zinc-500 dark:text-zinc-400 text-center mt-2;
 }
 
+/* callout syntaxes for info , danger , Tip, Warning, */
 
- /* callout syntaxes for info , danger , Tip, Warning, */
-
- .callout {
+.callout {
   @apply border-l-4 p-4 my-6 rounded-md;
 }
 
 .callout-info {
-  @apply border-blue-400 bg-blue-50 text-blue-800 dark:bg-blue-900 dark:text-blue-100;
+  @apply border-blue-400 bg-blue-50 text-blue-800 dark:bg-blue-900 dark:text-blue-300;
 }
 
 .callout-warning {
@@ -450,4 +438,3 @@ pre[class*='language-'] {
 .callout-title {
   @apply font-bold mb-2 flex items-center gap-2;
 }
-
