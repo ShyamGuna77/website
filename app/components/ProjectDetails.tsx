@@ -6,6 +6,8 @@ import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
 import LinkSaver from "@/app/Images/LinkSaver.png"
 import Shinigami from "@/app/Images/shinigami.png"
+import Kizuna from "@/app/Images/kizuna.png"
+import Cosketch from "@/app/Images/cosketch.png"
 
 import SPD from "@/app/Images/SPD.png";
 
@@ -20,7 +22,7 @@ type Project = {
   live: string;
 };
 
-// ✅ Projects array using imported image modules
+
 const projects: Project[] = [
   {
     id: 1,
@@ -122,54 +124,124 @@ const projects: Project[] = [
         </p>
       </>
     ),
-    imgSrc: SPD,
+    imgSrc: Cosketch,
     tech: ["Nextjs", "canvas", "prisma", "Tailwind", "webSocket"],
     github: "https://github.com/ShyamGuna77",
     live: "https://github.com/ShyamGuna77",
   },
   {
     id: 3,
-    title: "Task Management App",
+    title: "Kizuna",
     description:
       "A Kanban-style task management application with drag-and-drop functionality.",
     fullDescription: (
       <>
-        <p>
-          This task management application helps teams organize their work with
-          a visual Kanban board interface.
+        <p className="leading-relaxed text-gray-800">
+          Kizuna is a real-time dating app that helps people connect, match, and
+          chat seamlessly. Built with{" "}
+          <strong className="font-semibold text-blue-600">Next.js</strong>,{" "}
+          <strong className="font-semibold text-blue-600">Tailwind CSS</strong>,
+          and powered by{" "}
+          <strong className="font-semibold text-blue-600">Pusher</strong> for
+          real-time notifications and communication, Kizuna provides a smooth
+          and engaging experience for users looking to meet new people.
         </p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li>Drag-and-drop task management</li>
-          <li>Custom columns and workflow states</li>
-          <li>Task assignment and due dates</li>
-          <li>File attachments and comments</li>
-          <li>Team collaboration tools</li>
-        </ul>
-        <p>Built using Firebase for real-time updates and authentication.</p>
+
+        <p className="leading-relaxed text-gray-800">
+          The app allows users to create profiles, swipe through potential
+          matches, and send messages in real time. With Pusher integration,
+          notifications about new matches and messages appear instantly, keeping
+          users engaged and connected throughout their experience.
+        </p>
+
+        <p className="leading-relaxed text-gray-800">
+          Kizuna’s clean and modern interface, built with Tailwind CSS, is
+          designed to provide a seamless mobile-first experience. Whether you're
+          looking for casual chats or meaningful connections, Kizuna makes it
+          easy to find people nearby and connect in real time.
+        </p>
+
+        <p className="text-xl font-semibold text-green-500 mt-6">
+          <em>Match. Chat. Connect — all in real time.</em>
+        </p>
       </>
     ),
-    imgSrc: SPD,
-    tech: ["React", "Firebase", "Tailwind CSS", "React DnD"],
-    github: "https://github.com/username/taskmanager",
-    live: "https://taskapp.dev",
+    imgSrc: Kizuna,
+    tech: ["Nextjs", "Prisma", "Tailwind CSS", "Pusher"],
+    github: "https://github.com/ShyamGuna77/Kizuna",
+    live: "https://github.com/ShyamGuna77/Kizuna",
   },
   {
     id: 4,
-    title: "Weather Dashboard",
+    title: "Sonic Ronin",
     description:
-      "A weather forecasting application with interactive maps and real-time updates.",
+      "A a real-time collaborative music Live streaming platform" ,
+         
     fullDescription: (
       <>
-        <p>
-          This weather dashboard provides detailed weather info and forecasts
-          for locations worldwide.
+        <p className="leading-relaxed text-gray-800">
+          <strong>SonicRonin</strong> is a real-time collaborative music
+          streaming platform where users can create or join rooms, add songs,
+          and upvote tracks to decide the playlist. The most upvoted song plays
+          next, making the music experience truly democratic.
         </p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li>Current weather and 7-day forecast</li>
-          <li>Interactive map with weather layers</li>
-          <li>Location search and alerts</li>
+
+        <p className="font-semibold text-gray-800">
+          <strong>Key Features:</strong>
+        </p>
+        <ul className="list-disc pl-5 space-y-2 text-gray-800">
+          <li>
+            🎵 <strong>Create and Join Rooms</strong>: Users can create new
+            rooms or join existing ones for a seamless group experience.
+          </li>
+          <li>
+            📌 <strong>Add Songs</strong>: Everyone in the room can contribute
+            by adding their favorite tracks to the queue.
+          </li>
+          <li>
+            👍 <strong>Upvote Songs</strong>: The most upvoted song takes the
+            stage next, keeping the playlist dynamic and engaging.
+          </li>
+          <li>
+            🤖 <strong>Real-Time Chatbox</strong>: Interact with others in the
+            room via the live chat feature.
+          </li>
+          <li>
+            🔄 <strong>Real-Time Updates</strong>: WebSockets ensure instant
+            updates on song queues and voting.
+          </li>
         </ul>
-        <p>Uses OpenWeatherMap API and Mapbox.</p>
+
+        <p className="font-semibold text-gray-800">
+          <strong>Tech Stack:</strong>
+        </p>
+        <ul className="list-disc pl-5 space-y-2 text-gray-800">
+          <li>
+            <strong>Frontend</strong>: Next.js, React, TailwindCSS
+          </li>
+          <li>
+            <strong>Backend</strong>: (Redis, WebSocket)
+          </li>
+          <li>
+            <strong>Database</strong>: PostgreSQL
+          </li>
+          <li>
+            <strong>ORM</strong>: Prisma
+          </li>
+          <li>
+            <strong>Authentication</strong>: NextAuth / OAuth
+          </li>
+          <li>
+            <strong>Streaming API</strong>: YouTube API
+          </li>
+        </ul>
+
+        <p className="leading-relaxed text-gray-800">
+          SonicRonin takes collaborative music streaming to the next level with
+          real-time interactions and seamless integration. Whether you're at
+          home or on the go, experience music in a whole new way, together with
+          friends and strangers alike!
+        </p>
       </>
     ),
     imgSrc: SPD,
