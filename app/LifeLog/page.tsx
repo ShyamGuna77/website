@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { type Metadata } from "next";
 import { Container } from "../components/Container";
 import React from "react";
