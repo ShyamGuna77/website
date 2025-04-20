@@ -4,6 +4,8 @@
 import { useState, useEffect, ReactNode } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
+import LinkSaver from "@/app/Images/LinkSaver.png"
+import Shinigami from "@/app/Images/shinigami.png"
 
 import SPD from "@/app/Images/SPD.png";
 
@@ -22,63 +24,108 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: "Portfolio Website",
+    title: "Shinigami Designs",
     description:
-      "A modern portfolio website built with Next.js and Tailwind CSS.",
+      "Shinigami Design is an  graphic editor with templates, AI tools, and export features.",
+
     fullDescription: (
       <>
         <p>
-          This portfolio website was built using Next.js and Tailwind CSS. It
-          features a clean, minimalist design with smooth animations and
-          responsive layout.
+          <strong>Shinigami Design</strong> is a modern, anime-inspired SaaS
+          graphic editor built using Next.js, Tailwind CSS, Shadcn UI, and
+          powered by Bun for blazing-fast builds. It provides a seamless and
+          responsive user interface designed for both casual creators and
+          professional designers.
         </p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li>Responsive design that works on all devices</li>
-          <li>Dark/light mode toggle</li>
-          <li>Smooth page transitions with Framer Motion</li>
-          <li>SEO optimized with Next.js</li>
-          <li>Contact form with validation</li>
-        </ul>
+
         <p>
-          The site is deployed on Vercel and uses static site generation for
-          optimal performance.
+          The editor allows users to add and manipulate shapes, insert and style
+          text, and upload images directly onto a customizable canvas. It
+          includes a flexible template system where users can start with
+          pre-built layouts, making the design process faster and more
+          intuitive.
+        </p>
+
+        <p>
+          Once editing is complete, users can export their designs in various
+          formats such as PNG or JPG. The platform also includes a save feature,
+          enabling users to store their projects and return to them anytime for
+          further editing or revisions.
+        </p>
+
+        <p>
+          Shinigami Design features AI-powered tools available for Pro users,
+          including smart image enhancements, auto-layout suggestions, and style
+          filters that apply anime, retro, noir, and sketch aesthetics with a
+          single click.
+        </p>
+
+        <p>
+          Designed with a mobile-first approach, the app supports light and dark
+          themes, smooth animations, and an accessible layout. It's deployed on
+          Vercel, using static site generation for optimized performance and
+          faster load times.
+        </p>
+
+        <p>
+          <em>Unleash your inner creative. Design like a death god.</em>
         </p>
       </>
     ),
-    imgSrc: SPD,
-    tech: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/username/portfolio",
-    live: "https://portfolio.dev",
+    imgSrc: Shinigami,
+    tech: ["Next.js", "React", "Tailwind CSS", "Bun", "Drizzle"],
+    github: "https://github.com/ShyamGuna77/SevenD",
+    live: "https://github.com/ShyamGuna77/SevenD",
   },
   {
     id: 2,
-    title: "E-commerce Platform",
-    description:
-      "A full-featured e-commerce platform with payment integration.",
+    title: "CoSketch",
+    description: "A full-featured DrawBoard platform using Websockets.",
     fullDescription: (
       <>
-        <p>
-          This e-commerce platform provides a complete solution for online
-          stores with product management, cart functionality, user
-          authentication, and Stripe payment integration.
+        <p className="leading-relaxed text-gray-800">
+          This online whiteboard app is a real-time collaborative drawing tool
+          inspired by Excalidraw. It allows multiple users to sketch, draw, and
+          brainstorm together on a shared canvas using WebSockets for seamless
+          synchronization and instant updates.
         </p>
-        <ul className="list-disc pl-5 space-y-1">
-          <li>User authentication and profile management</li>
-          <li>Product catalog with categories and search</li>
-          <li>Shopping cart with persistent storage</li>
-          <li>Checkout process with Stripe integration</li>
-          <li>Order history and tracking</li>
-          <li>Admin dashboard for product management</li>
-        </ul>
-        <p>
-          Built with a MongoDB database and deployed on AWS for scalability.
+
+        <p className="leading-relaxed text-gray-800">
+          Built with{" "}
+          <strong className="font-semibold text-blue-600">Next.js</strong>,{" "}
+          <strong className="font-semibold text-blue-600">Tailwind CSS</strong>,
+          and the{" "}
+          <strong className="font-semibold text-blue-600">HTML5 Canvas</strong>{" "}
+          element, this platform offers all the essential features of
+          Excalidraw, such as freehand drawing, shapes, text, arrow connectors,
+          undo/redo, and zooming.
+        </p>
+
+        <p className="leading-relaxed text-gray-800">
+          The app’s real-time collaboration capabilities enable multiple users
+          to join a session simultaneously and work on the same canvas without
+          lag, making it ideal for remote teams, classNamerooms, and creative
+          brainstorming. It’s fast, responsive, and easy to use, with a
+          minimalistic interface that focuses on the drawing experience.
+        </p>
+
+        <p className="leading-relaxed text-gray-800">
+          Whether you're sketching a concept, planning a project, or
+          collaborating on designs, this tool allows you to bring ideas to life
+          with others, no matter where you are. Everything happens in real time,
+          ensuring that your ideas and changes are instantly visible to all
+          participants.
+        </p>
+
+        <p className="text-xl font-semibold text-green-500 mt-6">
+          <em>Think. Draw. Collaborate — in real time.</em>
         </p>
       </>
     ),
     imgSrc: SPD,
-    tech: ["React", "Node.js", "MongoDB", "Express", "Stripe API"],
-    github: "https://github.com/username/ecommerce",
-    live: "https://ecommerce-demo.com",
+    tech: ["Nextjs", "canvas", "prisma", "Tailwind", "webSocket"],
+    github: "https://github.com/ShyamGuna77",
+    live: "https://github.com/ShyamGuna77",
   },
   {
     id: 3,
