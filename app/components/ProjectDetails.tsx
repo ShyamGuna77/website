@@ -8,8 +8,9 @@ import LinkSaver from "@/app/Images/LinkSaver.png"
 import Shinigami from "@/app/Images/shinigami.png"
 import Kizuna from "@/app/Images/kizuna.png"
 import Cosketch from "@/app/Images/cosketch.png"
+import Sonicronin from "@/app/Images/Sonicronin.png"
 
-import SPD from "@/app/Images/SPD.png";
+
 
 type Project = {
   id: number;
@@ -174,9 +175,8 @@ const projects: Project[] = [
   {
     id: 4,
     title: "Sonic Ronin",
-    description:
-      "A a real-time collaborative music Live streaming platform" ,
-         
+    description: "A  real-time collaborative music Live streaming platform",
+
     fullDescription: (
       <>
         <p className="leading-relaxed text-gray-800">
@@ -244,10 +244,10 @@ const projects: Project[] = [
         </p>
       </>
     ),
-    imgSrc: SPD,
-    tech: ["JavaScript", "React", "OpenWeatherMap API", "Mapbox"],
-    github: "https://github.com/username/weather",
-    live: "https://weather-app.io",
+    imgSrc: Sonicronin,
+    tech: ["Nextjs", "Websockets", "YoutubeApi", "Motion"],
+    github: "https://github.com/ShyamGuna77/SonicRonin",
+    live: "https://github.com/ShyamGuna77/SonicRonin",
   },
 ];
 
