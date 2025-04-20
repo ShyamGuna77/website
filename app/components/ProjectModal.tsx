@@ -1,47 +1,43 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { AiOutlineExport } from "react-icons/ai";
 import { MdClose } from "react-icons/md";
 import ReactDOM from "react-dom";
 
-interface Props {
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
-  title: string;
+interface Project {
   imgSrc: string;
-  code: string;
-  projectLink: string;
+  title: string;
   tech: string[];
-  modelContent: ReactNode;
+  fullDescription: string;
+  github: string;
+  live: string;
 }
 
-export  const ProjectModal = ({
+interface ProjectModalProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  project: Project | null;
+}
+
+export default function ProjectModal({
   isOpen,
   setIsOpen,
-  title,
-  imgSrc,
-  code,
-  projectLink,
-  tech,
-  modelContent,
-}: Props) => {
-  const [mounted, setMounted] = useState(false);
-
+  project,
+}: ProjectModalProps) {
   useEffect(() => {
-    setMounted(true);
     const body = document.querySelector("body");
-    if (isOpen) {
-      body!.style.overflowY = "hidden";
-    } else {
-      body!.style.overflowY = "scroll";
+
+    if (body) {
+      body.style.overflowY = isOpen ? "hidden" : "scroll";
     }
   }, [isOpen]);
 
-  if (!mounted || !isOpen) return null;
+  if (!isOpen || !project) return null;
 
   const content = (
     <div
@@ -60,19 +56,21 @@ export  const ProjectModal = ({
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-2xl h-fit rounded-lg overflow-hidden bg-zinc-900 shadow-lg cursor-auto"
       >
-        <img
-          className="w-full"
-          src={imgSrc}
-          alt={`An image of the ${title} project.`}
+        <Image
+          className="w-full aspect-video object-cover"
+          src={project.imgSrc}
+          alt={`An image of the ${project.title} project.`}
+          width={1280} // Adjust width as needed
+          height={720} // Adjust height as needed
         />
         <div className="p-8">
-          <h4 className="text-3xl font-bold mb-2">{title}</h4>
+          <h4 className="text-3xl font-bold mb-2">{project.title}</h4>
           <div className="flex flex-wrap gap-2 text-sm text-indigo-300">
-            {tech.join(" - ")}
+            {project.tech.join(" - ")}
           </div>
 
           <div className="space-y-4 my-6 leading-relaxed text-sm text-zinc-300">
-            {modelContent}
+            {project.fullDescription}
           </div>
 
           <div>
@@ -84,7 +82,7 @@ export  const ProjectModal = ({
                 target="_blank"
                 rel="nofollow"
                 className="text-zinc-300 hover:text-indigo-300 transition-colors flex items-center gap-1"
-                href={code}
+                href={project.github}
               >
                 <FaGithub /> Source Code
               </Link>
@@ -92,7 +90,7 @@ export  const ProjectModal = ({
                 target="_blank"
                 rel="nofollow"
                 className="text-zinc-300 hover:text-indigo-300 transition-colors flex items-center gap-1"
-                href={projectLink}
+                href={project.live}
               >
                 <AiOutlineExport /> Live Project
               </Link>
@@ -103,8 +101,7 @@ export  const ProjectModal = ({
     </div>
   );
 
-  const rootElement = document.getElementById("modal-root");
-  if (!rootElement) return null;
-
+  // Use portal to render modal
+  const rootElement = document.getElementById("root") || document.body;
   return ReactDOM.createPortal(content, rootElement);
-};
+}
