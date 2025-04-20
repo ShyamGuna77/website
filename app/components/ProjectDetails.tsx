@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-
+"use client"
 
 import { useAnimation, useInView, motion } from "framer-motion";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import { ReactNode, useEffect,useRef,useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { AiOutlineExport } from "react-icons/ai";
 import Reveal from "../utils/Reveal";
-import { ProjectModel } from "./ProjectModal";
+import { ProjectModal } from "./ProjectModal";
 
 
 interface Props {
@@ -110,15 +110,15 @@ return (
         </Reveal>
       </div>
     </motion.div>
-    <ProjectModel
+    <ProjectModal
       modelContent={modelContent}
       projectLink={projectLink}
       setIsOpen={setIsOpen}
       isOpen={isOpen}
-      imgSrc={imgSrc}
-      title={title}
       code={code}
+      imgSrc={imgSrc}
       tech={tech}
+      title={title}
     />
   </>
 );
