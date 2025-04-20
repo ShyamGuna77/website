@@ -1,0 +1,263 @@
+import Callout from "../../components/Callout";
+import { ArticleLayout } from "../../components/ArticleLayout";
+
+export const article = {
+  author: 'Shyam Guna',
+  date: '2025-04-19',
+  title: 'Web Fonts: From Google to Self-Hosting Like a Pro',
+  description: 'A full guide on using custom fonts in modern web applications, from Google Fonts to self-hosted @font-face strategies.',
+};
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+};
+
+export default (props) => <ArticleLayout article={article} {...props} />;
+
+# Web Fonts: From Google to Self-Hosting Like a Pro
+
+If we want to use a font that doesn't come pre-installed on the user's device, we can download and use a custom font!
+
+There are lots of ways to do it. In this lesson, we'll look at a couple of popular services that can help, and also see how to do it from scratch.
+
+## Using Google Fonts
+
+Google Fonts is an online repository of free, open-source web fonts. They have hundreds of popular options. It also effectively works as a CDN for fonts; they serve the fonts for us, from their own servers.
+
+Google Fonts works by providing a snippet that looks like this:
+
+```html
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+```
+
+Drop this in the `<head>` of your HTML file.
+
+Then use it in your CSS:
+
+```css
+.thing {
+  font-family: 'Open Sans', sans-serif;
+}
+```
+
+<Callout type="tip" title="Quotes for font names">
+  Web fonts should be wrapped in quotes ('Open Sans', not Open Sans). It isn't strictly required for single-word fonts, but it's good practice.
+</Callout>
+
+## No HTML file?
+
+If you use a framework like Next.js, you may not have a traditional `index.html` file.
+
+Frameworks generate this file automatically, but they provide escape hatches. In Next.js, you can use the `<Head />` component:
+
+```jsx
+import Head from 'next/head';
+
+<Head>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+</Head>
+```
+
+## The Benefits and Downsides of Google Fonts
+
+<Callout type="info" title="Easy setup, but not perfect">
+  Google Fonts is convenient, but not always the best for performance or variety.
+</Callout>
+
+- Lots of amazing fonts aren't on Google Fonts
+- Self-hosted web fonts can perform better
+
+[Gatsby creator Kyle Matthews discovered](https://bricolage.io/typefaces-easiest-way-to-self-host-fonts/) that self-hosting fonts can save **300ms on desktop and 1s+ on mobile 3G**.
+
+## Performance Trade-Offs
+
+The issue isn't Google's server speed — it's about the loading process:
+
+1. Browser fetches and parses `index.html`
+2. It sees the `<link>` to Google Fonts CSS, fetches it
+3. Parses that CSS, sees font reference to `fonts.gstatic.com`, fetches it too
+
+Because fonts.googleapis.com and fonts.gstatic.com are **external domains**, additional handshakes (like HTTPS) introduce overhead.
+
+<Callout type="warning" title="Blocking requests hurt performance">
+  The font CSS request is **blocking** — the browser waits before rendering the page.
+</Callout>
+
+Self-hosting lets you skip Step 2 and 3 entirely, resulting in better performance.
+
+In the past, fonts from Google Fonts might've been cached due to global CDN sharing. However, modern browsers now use **partitioned caches**, so every site must re-download fonts.
+
+## Using Modern Tooling: Fontsource
+
+[Fontsource](https://fontsource.org) by Vercel makes it easy to self-host fonts. You can install fonts using npm:
+
+```bash
+npm install @fontsource/open-sans
+```
+
+Then import it directly:
+
+```js
+import '@fontsource/open-sans';
+```
+
+<Callout type="info" title="Fontsource FTW">
+  Fontsource supports all Google Fonts and other open-source fonts, ideal for modern JS frameworks.
+</Callout>
+
+Angular 11+ also supports Google Fonts with built-in configuration to inline fonts directly.
+
+## The Manual Way
+
+If the font isn’t on Google Fonts or Fontsource, self-host manually.
+
+### Converting formats
+
+Most system fonts are `.otf` or `.ttf` — large and not optimized for web. Convert them to `.woff2` using [Font Squirrel’s Webfont Generator](https://www.fontsquirrel.com/tools/webfont-generator).
+
+### Using `@font-face`
+
+```css
+@font-face {
+  font-family: 'Wotfard';
+  src: url('/fonts/wotfard-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+```
+
+Repeat for each weight and style:
+
+```css
+@font-face {
+  font-family: 'Wotfard';
+  src: url('/fonts/wotfard-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Wotfard';
+  src: url('/fonts/wotfard-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Wotfard';
+  src: url('/fonts/wotfard-regular-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+}
+```
+
+Each variation (italic, weight) requires its own declaration.
+
+### IE Support
+
+Modern browsers all support `.woff2`. IE doesn’t.
+
+```css
+@font-face {
+  font-family: 'Wotfard';
+  src: 
+    url('/fonts/wotfard-regular-italic.woff2') format('woff2'),
+    url('/fonts/wotfard-regular-italic.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+```
+
+Put `.woff2` first so modern browsers use the smaller file.
+
+## Where to Place the Fonts
+
+Add `@font-face` declarations inside `<style>` in your `index.html` or in your main CSS file.
+
+```html
+<style>
+  @font-face {
+    font-family: 'Wotfard';
+    src: url('/fonts/wotfard-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+</style>
+```
+
+Use like this:
+
+```css
+.something {
+  font-family: 'Wotfard';
+  font-weight: 400;
+}
+```
+
+## Static Files in React
+
+React requires assets like fonts/images to go in the `public/` folder (CRA) or static handling paths for frameworks like Next.js and Gatsby.
+
+## Faux Bolds and Italics
+
+Without the real bold or italic font, browsers will **simulate** styles. These look worse than true variants.
+
+**True Bold** – Clean and designed by the font creator.
+
+**Faux Bold** – Lines artificially thickened by the browser.
+
+Same goes for italic: browsers slant the font instead of using alternate characters.
+
+<Callout type="warning" title="Use real styles">
+  Always provide actual bold/italic font files. Faux styles reduce visual quality.
+</Callout>
+
+## Number Rounding
+
+Suppose you load 400 and 900 weights. What happens when you write:
+
+```css
+.thing {
+  font-weight: bold;
+}
+
+.thing {
+  font-weight: 700;
+}
+```
+
+In the past, this would result in faux-bold. But modern browsers round to the closest available weight.
+
+<Callout type="info" title="Demo Outcome">
+  The font will round to 900, showing heavy text for both weights.
+</Callout>
+
+<table>
+  <thead>
+    <tr>
+      <th>Using <code>font-weight: bold</code></th>
+      <th>Using <code>font-weight: 700</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>This text is bold.</td>
+      <td>This text is bold.</td>
+    </tr>
+  </tbody>
+</table>
+
+<Callout type="tip" title="Use numeric weights for clarity">
+  Use `font-weight: 700` instead of `bold` for better control and precision.
+</Callout>
+
+## Final Thoughts
+
+- Google Fonts is simple, but may be slower
+- Self-hosted fonts are faster and more customizable
+- Fontsource makes self-hosting even easier
+- Always use proper formats (`.woff2`, `.woff`)
+- Avoid faux styles — real bold/italic files make a difference

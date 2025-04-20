@@ -1,0 +1,141 @@
+import Callout from "../../components/Callout";
+import { ArticleLayout } from "../../components/ArticleLayout";
+import demo from "./demo.png";
+
+export const article = {
+  author: 'Shyam Guna',
+  date: '2025-03-19',
+  title: 'The Journey of a Request to the Backend',
+  description: 'From the frontend through the kernel to the backend process — understanding the complete lifecycle of a backend request.',
+};
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+};
+
+export default (props) => <ArticleLayout article={article} {...props} />;
+
+
+
+From the frontend through the kernel to the backend process, a request goes through a fascinating and complex lifecycle before it is actually processed.
+
+<img src={demo.src} alt="Request Flow Diagram"  />
+
+Knowing each step helps backend developers architect systems that are robust and performant. Let’s explore the 6 key stages a request undergoes before processing.
+
+---
+
+## 1. Accept
+
+Connections arrive on ports like 443 using TCP or QUIC. The OS kernel completes the handshake and adds the connection to an **accept queue**. The backend app must call the `accept()` syscall to obtain a file descriptor.
+
+<Callout type="warning" title="Potential bottleneck">
+  If your backend is slow to accept connections, the queue fills up and causes connection failures.
+</Callout>
+
+To improve this, you can:
+
+- Increase the **backlog** (queue size)
+- Use a dedicated **accept thread**
+- Leverage `SO_REUSEPORT` to allow multiple threads/processes to own separate accept queues
+
+---
+
+## 2. Read
+
+Once accepted, data is sent as raw bytes over the connection. These bytes:
+
+- Are encrypted if TLS is used
+- May be compressed
+- Are protocol-defined (like HTTP)
+
+The OS kernel buffers packets in a **receive queue** until the backend app reads them using `read()` or `recv()` syscalls. These syscalls transfer data to **user-space memory**.
+
+<Callout type="info" title="No full request yet">
+  At this stage, the backend only sees encrypted raw bytes — it might be part of one request or several.
+</Callout>
+
+---
+
+## 3. Decrypt
+
+Once in memory, encrypted bytes must be **decrypted** using SSL libraries like OpenSSL. Only then can we see headers and metadata.
+
+<Callout type="warning" title="Decryption is CPU-intensive">
+  It can be executed in the same thread or a dedicated thread to offload CPU.
+</Callout>
+
+---
+
+## 4. Parse
+
+With plaintext available, the backend parses it using the agreed protocol.
+
+- **HTTP/1.1** uses content-length or chunked encoding
+- **HTTP/2 or HTTP/3** require decoding binary frames
+
+<Callout type="info" title="Parsing costs CPU">
+  Parsing overhead increases with protocols like HTTP/2 and HTTP/3 due to their complexity.
+</Callout>
+
+---
+
+## 5. Decode
+
+Once parsed, the request body (like JSON or Protobuf) must be **deserialized** into native language objects. For example:
+
+```js
+const data = JSON.parse(jsonString);
+```
+
+Other decoding operations may include:
+
+- **UTF-8 decoding**: Raw bytes must be properly interpreted
+- **Decompression**: If the body is compressed, it must be unzipped before reading
+
+<Callout type="tip" title="Not a free operation">
+  Deserialization and decompression require CPU cycles and memory.
+</Callout>
+
+---
+
+## 6. Process
+
+Finally, the request is understood and ready to be processed. This may involve:
+
+- Querying a database
+- File I/O
+- Business logic
+- Sending responses
+
+<Callout type="info" title="Use worker pools">
+  It’s recommended to offload processing to worker threads or a thread pool.
+</Callout>
+
+---
+
+## Summary
+
+Each backend request undergoes six steps:
+
+1. **Accept** the connection
+2. **Read** bytes from the kernel buffer
+3. **Decrypt** the content
+4. **Parse** the protocol
+5. **Decode** the body
+6. **Process** the request
+
+Understanding this journey enables backend developers to design systems where no single step becomes a bottleneck. Some systems use one thread for everything, others assign a thread per stage — the choice depends on performance goals and use cases.
+
+<Callout type="tip" title="Design for flexibility">
+  You can merge or split responsibilities between threads depending on load, architecture, and performance.
+</Callout>
+
+---
+
+## The Goodbye 👋
+
+Hope this cleared things up! If you liked the article or have questions, drop a message on my socials.
+
+Thanks for reading!
