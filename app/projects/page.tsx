@@ -1,9 +1,13 @@
 import React from 'react'
-
-const page = () => {
+import { ProjectDetails } from '../components/ProjectDetails'
+import { SectionHeader } from '../utils/SectionHeader'
+const Project = () => {
   return (
-    <div>page</div>
+    <>
+
+    
+    </>
   )
 }
 
-export default page
+export default Project
