@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ThemeProvider, useTheme } from "next-themes";
 
@@ -13,13 +13,13 @@ export const AppContext = createContext<AppContextType>({
 });
 
 function ThemeWatcher() {
-  let { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
-    let media = window.matchMedia("(prefers-color-scheme: dark)");
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
 
     function onMediaChange() {
-      let systemTheme = media.matches ? "dark" : "light";
+    const systemTheme = media.matches ? "dark" : "light";
       if (resolvedTheme === systemTheme) {
         setTheme("system");
       }
@@ -41,9 +41,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const [previousPathname, setPreviousPathname] = useState<string | null>(null);
 
   useEffect(() => {
-    // Store the previous path when changing routes
-    if (pathname.includes("/articles/")) {
-      // Only store non-article paths as previous
+  
+    if (pathname && pathname.includes("/articles/")) {
+    
       if (!previousPathname || !previousPathname.includes("/articles/")) {
         setPreviousPathname(previousPathname);
       }

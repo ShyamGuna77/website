@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { useState, useEffect, ReactNode } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
-import LinkSaver from "@/app/Images/LinkSaver.png"
+// import LinkSaver from "@/app/Images/LinkSaver.png"
 import Shinigami from "@/app/Images/shinigami.png"
 import Kizuna from "@/app/Images/kizuna.png"
 import Cosketch from "@/app/Images/cosketch.png"
@@ -86,14 +87,14 @@ const projects: Project[] = [
     description: "A full-featured DrawBoard platform using Websockets.",
     fullDescription: (
       <>
-        <p className="leading-relaxed text-gray-800">
+        <p className="leading-relaxed">
           This online whiteboard app is a real-time collaborative drawing tool
           inspired by Excalidraw. It allows multiple users to sketch, draw, and
           brainstorm together on a shared canvas using WebSockets for seamless
           synchronization and instant updates.
         </p>
 
-        <p className="leading-relaxed text-gray-800">
+        <p className="leading-relaxed">
           Built with{" "}
           <strong className="font-semibold text-blue-600">Next.js</strong>,{" "}
           <strong className="font-semibold text-blue-600">Tailwind CSS</strong>,
@@ -104,7 +105,7 @@ const projects: Project[] = [
           undo/redo, and zooming.
         </p>
 
-        <p className="leading-relaxed text-gray-800">
+        <p className="leading-relaxed">
           The app’s real-time collaboration capabilities enable multiple users
           to join a session simultaneously and work on the same canvas without
           lag, making it ideal for remote teams, classNamerooms, and creative
@@ -112,7 +113,7 @@ const projects: Project[] = [
           minimalistic interface that focuses on the drawing experience.
         </p>
 
-        <p className="leading-relaxed text-gray-800">
+        <p className="leading-relaxed">
           Whether you're sketching a concept, planning a project, or
           collaborating on designs, this tool allows you to bring ideas to life
           with others, no matter where you are. Everything happens in real time,
@@ -137,7 +138,7 @@ const projects: Project[] = [
       "A Kanban-style task management application with drag-and-drop functionality.",
     fullDescription: (
       <>
-        <p className="leading-relaxed text-gray-800">
+        <p className="leading-relaxed">
           Kizuna is a real-time dating app that helps people connect, match, and
           chat seamlessly. Built with{" "}
           <strong className="font-semibold text-blue-600">Next.js</strong>,{" "}
@@ -148,14 +149,14 @@ const projects: Project[] = [
           and engaging experience for users looking to meet new people.
         </p>
 
-        <p className="leading-relaxed text-gray-800">
+        <p className="leading-relaxed">
           The app allows users to create profiles, swipe through potential
           matches, and send messages in real time. With Pusher integration,
           notifications about new matches and messages appear instantly, keeping
           users engaged and connected throughout their experience.
         </p>
 
-        <p className="leading-relaxed text-gray-800">
+        <p className="leading-relaxed">
           Kizuna’s clean and modern interface, built with Tailwind CSS, is
           designed to provide a seamless mobile-first experience. Whether you're
           looking for casual chats or meaningful connections, Kizuna makes it
@@ -179,17 +180,17 @@ const projects: Project[] = [
 
     fullDescription: (
       <>
-        <p className="leading-relaxed text-gray-800">
+        <p className="leading-relaxed">
           <strong>SonicRonin</strong> is a real-time collaborative music
           streaming platform where users can create or join rooms, add songs,
           and upvote tracks to decide the playlist. The most upvoted song plays
           next, making the music experience truly democratic.
         </p>
 
-        <p className="font-semibold text-gray-800">
+        <p className="font-semibold">
           <strong>Key Features:</strong>
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-gray-800">
+        <ul className="list-disc pl-5 space-y-2">
           <li>
             🎵 <strong>Create and Join Rooms</strong>: Users can create new
             rooms or join existing ones for a seamless group experience.
@@ -212,10 +213,10 @@ const projects: Project[] = [
           </li>
         </ul>
 
-        <p className="font-semibold text-gray-800">
+        <p className="font-semibold">
           <strong>Tech Stack:</strong>
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-gray-800">
+        <ul className="list-disc pl-5 space-y-2">
           <li>
             <strong>Frontend</strong>: Next.js, React, TailwindCSS
           </li>
@@ -236,7 +237,7 @@ const projects: Project[] = [
           </li>
         </ul>
 
-        <p className="leading-relaxed text-gray-800">
+        <p className="leading-relaxed">
           SonicRonin takes collaborative music streaming to the next level with
           real-time interactions and seamless integration. Whether you're at
           home or on the go, experience music in a whole new way, together with
