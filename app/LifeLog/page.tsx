@@ -38,7 +38,7 @@ const resources: Resource[] = [
   },
 
   {
-    title: "The Ultimate productivity is saying No --james clear",
+    title: "The Ultimate productivity hack is saying No --james clear",
     url: "https://jamesclear.com/saying-no",
   },
   {
