@@ -7,21 +7,13 @@ import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { AiOutlineExport } from "react-icons/ai";
 import Reveal from "../utils/Reveal";
-
-interface Project {
-  imgSrc: string;
-  title: string;
-  github: string;
-  live: string;
-  tech: string[];
-  description: string;
-}
+import { Dispatch, SetStateAction } from "react";
+import { Project } from "@/types";
 
 interface ProjectCardProps {
   project: Project;
-  setSelectedProject: (project: Project) => void;
+  setSelectedProject: Dispatch<SetStateAction<Project | null>>;
 }
-
 export default function ProjectCard({ project, setSelectedProject }: ProjectCardProps) {
   const [hovered, setHovered] = useState(false);
   const controls = useAnimation();

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,7 +13,7 @@ interface Project {
   imgSrc: string;
   title: string;
   tech: string[];
-  fullDescription: string;
+  fullDescription: ReactNode;
   github: string;
   live: string;
 }

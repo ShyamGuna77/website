@@ -135,7 +135,7 @@ const projects: Project[] = [
     id: 3,
     title: "Kizuna",
     description:
-      "A Kanban-style task management application with drag-and-drop functionality.",
+      "A real-time dating app for swiping, matching, and chatting instantly.",
     fullDescription: (
       <>
         <p className="leading-relaxed">
