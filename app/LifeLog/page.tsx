@@ -37,6 +37,27 @@ const resources: Resource[] = [
     url: "https://blog.samaltman.com/how-to-be-successful",
   },
 
+  {
+    title: "The Ultimate productivity is saying No --james clear",
+    url: "https://jamesclear.com/saying-no",
+  },
+  {
+    title:
+      "If Self-Discipline Feels Difficult, Then You’re Doing It Wrong --mark manson",
+    url: "https://markmanson.net/self-discipline",
+  },
+  {
+    title: "I will teach you to be Rich  --Ramit sethi",
+    url: "https://files.addictbooks.com/wp-content/uploads/2022/11/I-Will-Teach-you-to-be-Rich.pdf",
+  },
+  {
+    title: "The one rule of Life  -- Mark Manson",
+    url: "https://markmanson.net/the-one-rule-for-life",
+  },
+  {
+    title: "HardWork  --Might Guy",
+    url: "https://www.youtube.com/watch?v=vKYTUy-GFRs",
+  },
 ];
 
 const LifeLog = () => {
