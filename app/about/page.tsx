@@ -43,7 +43,7 @@ const About = () => {
           <div className="lg:order-first lg:row-span-2">
             <Reveal>
               <h1 className="text-4xl font-bold tracking-tight">
-                Hey, I’m Shyam Guna — a 21-year-old Full Stack Developer from
+                Hey, I’m Shyam Guna — a Full Stack Developer from
                 India with a passion for building clean, creative, and scalable
                 digital experiences.
               </h1>
@@ -70,22 +70,14 @@ const About = () => {
               </Reveal>
               <Reveal>
                 <p>
-                  Outside of Coding . I am an Anime enthusiast(Otaku alert!) and
+                  Outside of Coding . I love watching anime and
                   Film Lover. My anime collection ranges from the intricate
                   mysteries of Death Note to the epic world-building stories of
                   One Piece, where I find inspiration in Luffy's persistence and
                   creativity when facing seemingly impossible obstacles.
                 </p>
               </Reveal>
-              <Reveal>
-                <p>
-                  Into anime and coding? Same here! Whether you're passionate
-                  about building cool stuff or binge-watching the latest season
-                  of your favorite anime, let's connect. I’m always up for tech
-                  chats, debugging sessions, or dropping anime recommendations.
-                  Hit me up — let’s geek out together!
-                </p>
-              </Reveal>
+             
             </div>
           </div>
           <div className="lg:pl-20">

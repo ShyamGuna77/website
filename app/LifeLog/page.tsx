@@ -5,7 +5,7 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: "LifeLog",
-  description: "I’m Shyam guna. Fullstack SDE based in India.",
+  description: "These are the Collection Good Poductivity resources",
 };
 
 type Resource = {
@@ -63,12 +63,12 @@ const resources: Resource[] = [
 const LifeLog = () => {
   return (
     <Container>
-      <div className="flex flex-col items-center  pt-10">
-        <div className="space-y-6">
-          <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white">
+      <div className="flex flex-col items-center pt-6 sm:pt-10 px-4">
+        <div className="space-y-4 sm:space-y-6">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 dark:text-white">
             My LifeLog
           </h1>
-          <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mt-4">
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mt-2 sm:mt-4">
             This is a collection of resources that helped me a lot. <br />
             I'll keep updating it as I find more useful stuff.
           </p>
@@ -77,20 +77,20 @@ const LifeLog = () => {
             know.
           </p>
 
-          <ul className="mt-10 list-disc list-inside text-left text-lg text-gray-800 dark:text-gray-200 space-y-3">
+            <ul className="mt-6 sm:mt-10 list-disc pl-5 text-left text-base sm:text-lg text-gray-800 dark:text-gray-200 space-y-2 sm:space-y-3">
             {resources.map((resource, index) => (
               <li key={index}>
-                <a
-                  href={resource.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  {resource.title}
-                </a>
+              <a
+                href={resource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                {resource.title}
+              </a>
               </li>
             ))}
-          </ul>
+            </ul>
         </div>
       </div>
     </Container>
