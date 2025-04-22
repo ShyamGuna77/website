@@ -78,19 +78,18 @@ const About = () => {
                   creativity when facing seemingly impossible obstacles.
                 </p>
               </Reveal>
-              <Reveal>
-           
-            <div className="flex justify-center mt-3">
-              <img
-                src="/spd.svg"
-                alt="Shyam Signature"
-                width={320}
-                height={200}
-                className="mx-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
-              />
-            </div>
-
-             </Reveal>
+                <Reveal>
+                <div className="flex justify-center items-center mt-3 space-x-4">
+              
+                  <img
+                  src="/spd.svg"
+                  alt="Shyam Signature"
+                  width={320}
+                  height={200}
+                  className="mx-auto opacity-80 hover:opacity-100 transition-opacity duration-300 dark:invert"
+                  />
+                </div>
+                </Reveal>
              
             </div>
           </div>
