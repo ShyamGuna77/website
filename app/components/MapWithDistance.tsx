@@ -207,7 +207,7 @@ const MapWithDistance = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="w-full mx-auto bg-white/95 dark:bg-zinc-800/95 rounded-2xl shadow-2xl overflow-hidden border border-blue-100 dark:border-blue-900"
+      className="w-full mx-auto bg-white/95 dark:bg-zinc-800/95 rounded-2xl shadow-2xl overflow-hidden border-2 border-blue-100 dark:border-blue-900"
     >
       <div className="p-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm font-medium text-center">
         Interactive Location Map
@@ -230,11 +230,11 @@ const MapWithDistance = () => {
           center={creatorPosition}
           zoom={2}
           style={{ height: "100%", width: "100%" }}
-          zoomControl={false}
-          scrollWheelZoom={false}
-          dragging={false}
-          doubleClickZoom={false}
-          attributionControl={false}
+          zoomControl={true}
+          scrollWheelZoom={true}
+          dragging={true}
+          doubleClickZoom={true}
+          attributionControl={true}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
