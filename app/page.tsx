@@ -53,10 +53,13 @@ export default function Home() {
         </Reveal>
       </div>
 
-      <div className="w-full flex justify-center mt-16">
+      <div className="w-full flex justify-center mt-24">
         <div className="w-full max-w-xl ml-auto mr-0">
           <Reveal>
             <div className="mb-8">
+              <h2 className = "text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
+                Our Distance
+              </h2>
              
               <p className="text-zinc-600 dark:text-zinc-400">
                 Check out how far you are from my location in Nellore, Andhra.
