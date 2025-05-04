@@ -53,6 +53,52 @@ function MapBoundsController({ userPosition, creatorPosition }: any) {
   return null;
 }
 
+// Animated polyline component
+function AnimatedPolyline({
+  positions,
+  color,
+}: {
+  positions: [number, number][];
+  color: string;
+}) {
+  const map = useMap();
+  const [dashOffset, setDashOffset] = useState(0);
+  const polylineRef = useRef<any>(null);
+
+  useEffect(() => {
+    let animationFrame: number;
+    let offset = 0;
+
+    const animate = () => {
+      offset = (offset - 1) % 30;
+      setDashOffset(offset);
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
+  return (
+    <Polyline
+      ref={polylineRef}
+      positions={positions}
+      pathOptions={{
+        color: color,
+        weight: 3,
+        opacity: 0.9,
+        dashArray: "5, 8",
+        dashOffset: dashOffset.toString(),
+        lineCap: "round",
+        lineJoin: "round",
+      }}
+    />
+  );
+}
+
 // Custom popup content component
 const CustomPopup = ({
   name,
@@ -152,6 +198,8 @@ const MapWithDistance = () => {
       .leaflet-container {
         font-family: inherit;
         background-color: rgba(210, 232, 252, 0.2) !important;
+        border: 3px solid #3b82f6;
+        border-radius: 8px;
       }
       
       /* Hide Leaflet controls */
@@ -209,11 +257,7 @@ const MapWithDistance = () => {
       transition={{ duration: 0.6 }}
       className="w-full mx-auto bg-white/95 dark:bg-zinc-800/95 rounded-2xl shadow-2xl overflow-hidden border-2 border-blue-100 dark:border-blue-900"
     >
-      <div className="p-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm font-medium text-center">
-        Interactive Location Map
-      </div>
-
-      <div className="w-full h-96 relative">
+      <div className="w-full h-80 relative p-4">
         {isLoading && (
           <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-100/80 dark:bg-zinc-900/80">
             <div className="flex flex-col items-center">
@@ -259,17 +303,9 @@ const MapWithDistance = () => {
                 </Popup>
               </Marker>
 
-              {/* Connection line between points */}
-              <Polyline
+              <AnimatedPolyline
                 positions={[creatorPosition, userPosition]}
-                pathOptions={{
-                  color: "#3b82f6",
-                  weight: 3,
-                  opacity: 0.8,
-                  dashArray: "5, 8",
-                  lineCap: "round",
-                  lineJoin: "round",
-                }}
+                color="#e53e3e"
               />
 
               {/* Controller to fit map bounds to show both markers */}
