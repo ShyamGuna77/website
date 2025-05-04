@@ -45,7 +45,7 @@ function MapBoundsController({ userPosition, creatorPosition }: any) {
           padding: [40, 40],
           animate: true,
           duration: 1,
-          maxZoom: 6, // Prevent zooming in too much
+          maxZoom: 6, 
         }
       );
     }
@@ -288,7 +288,7 @@ const MapWithDistance = () => {
           {greenIcon && (
             <Marker position={creatorPosition} icon={greenIcon}>
               <Popup closeButton={false} autoClose={false} closeOnClick={false}>
-                <CustomPopup name="👨‍💻 Shyam" location="Toronto, Canada" />
+                <CustomPopup name="👨‍💻 Shyam" location="India" />
               </Popup>
             </Marker>
           )}
@@ -298,7 +298,7 @@ const MapWithDistance = () => {
             <>
               <Marker position={userPosition} icon={redIcon}>
                 <Popup closeButton={false}>
-                  <CustomPopup name="📍 You are here" />
+                  <CustomPopup name=" You " />
                 </Popup>
               </Marker>
 
