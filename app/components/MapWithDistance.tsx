@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState, useRef } from "react";
@@ -136,7 +137,7 @@ const MapWithDistance = () => {
       ? new L.Icon({
           iconUrl:
             "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png",
-          shadowUrl: markerShadow.src || markerShadow,
+          shadowUrl: markerShadow.src,
           iconSize: [25, 41],
           iconAnchor: [12, 41],
           popupAnchor: [1, -34],
@@ -149,7 +150,7 @@ const MapWithDistance = () => {
       ? new L.Icon({
           iconUrl:
             "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
-          shadowUrl: markerShadow.src || markerShadow,
+          shadowUrl: markerShadow.src ,
           iconSize: [25, 41],
           iconAnchor: [12, 41],
           popupAnchor: [1, -34],
@@ -327,16 +328,13 @@ const MapWithDistance = () => {
             </span>
           </div>
 
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-zinc-100">
-            We're <span className="text-cyan-500">{distance} km</span> apart!
-          </h2>
-
+        
           <p className="text-gray-600 dark:text-zinc-400 text-sm max-w-md mx-auto">
-            I'm based in{" "}
-            <strong className="text-blue-500">Toronto, Canada</strong>,
+            I&apos;m based in{" "}
+            <strong className="text-blue-500">Andhra, India</strong>,
             approximately{" "}
             <span className="font-medium">{distance} kilometers</span> from your
-            current location.
+            current location.Based on Your IP address.
             {distance > 5000 && " That's quite a journey!"}
             {distance > 10000 &&
               " We're almost on opposite sides of the globe!"}

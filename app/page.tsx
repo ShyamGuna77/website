@@ -57,13 +57,11 @@ export default function Home() {
         <div className="w-full max-w-xl ml-auto mr-0">
           <Reveal>
             <div className="mb-8">
-              <h2 className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 mb-4 bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text inline-block">
-                Let&apos;s Connect
-              </h2>
+             
               <p className="text-zinc-600 dark:text-zinc-400">
-                Check out how far you are from my location in Toronto, Canada.
+                Check out how far you are from my location in Nellore, Andhra.
                 The interactive map below shows our distance in real-time by
-                accessing your location.
+                accessing your location.It may take few secs to load map.
               </p>
             </div>
           </Reveal>
