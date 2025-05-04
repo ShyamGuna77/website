@@ -62,7 +62,6 @@ function AnimatedPolyline({
   positions: [number, number][];
   color: string;
 }) {
-  const map = useMap();
   const [dashOffset, setDashOffset] = useState(0);
   const polylineRef = useRef<any>(null);
 
@@ -124,7 +123,6 @@ const MapWithDistance = () => {
   );
   const [distance, setDistance] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const mapRef = useRef(null);
 
   // Toronto coordinates
   const creatorLat = 14.4426;
