@@ -10,23 +10,55 @@ import { FaGithub } from "react-icons/fa";
 import Reveal from "./utils/Reveal";
 import MapWithDistance from "./components/MapWithDistance";
 import GithubGraph from "./components/GithubStats";
+import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+
+
 export default function Home() {
   return (
     <Container className="mt-9">
       <div className="max-w-2xl mb-12">
-        <Reveal>
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Frontend, backend, anime weekend
-          </h1>
-        </Reveal>
-        <Reveal>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I&apos;m Shyam, a fullstack developer and tech enthusiast from
-            India. I craft digital experiences with websockets, animation with
-            Framer Motion, bringing both backend logic and frontend magic to
-            life
-          </p>
-        </Reveal>
+        <RoughNotationGroup show={true}>
+          <Reveal>
+            <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+              <RoughNotation
+                type="highlight"
+                color="#0096FF"
+                animationDelay={1300}
+                animationDuration={1500}
+                padding={1}
+                show={true}
+                strokeWidth={3}
+                animate={true}
+                iterations={4}
+              >
+                <span>Frontend</span>
+              </RoughNotation>
+              , backend, anime weekend
+            </h1>
+          </Reveal>
+
+          <Reveal>
+            <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+              I&apos;m{" "}
+              <RoughNotation
+                type="underline"
+                color="#0096FF"
+                animationDelay={1300}
+                animationDuration={1500}
+                padding={1}
+                show={true}
+                strokeWidth={3}
+                animate={true}
+                iterations={2}
+              >
+                <span className="inline-block">Shyam</span>
+              </RoughNotation>
+              , a fullstack developer and tech enthusiast from India. I craft
+              digital experiences with websockets, animation with Framer Motion,
+              bringing both backend logic and frontend magic to life
+            </p>
+          </Reveal>
+        </RoughNotationGroup>
         <Reveal>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -83,10 +115,24 @@ export default function Home() {
           {/* GitHub Graph Container */}
           <div className="w-full lg:w-1/2 mt-4">
             <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
-                Proof of Work
-              </h2>
-              <GithubGraph />
+              <RoughNotation
+                type="underline"
+                color="#0096FF"
+                animationDelay={1300}
+                animationDuration={1500}
+                padding={1}
+                show={true}
+                strokeWidth={3}
+                animate={true}
+                iterations={4}
+              >
+                <h2 className="text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
+                  Proof of Work
+                </h2>
+              </RoughNotation>
+              <Reveal>
+                <GithubGraph />
+              </Reveal>
             </div>
           </div>
 
@@ -95,9 +141,21 @@ export default function Home() {
             <div className="max-w-xl ml-auto mr-0">
               <Reveal>
                 <div className="mb-8">
-                  <h2 className="text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
-                    Our Distance
-                  </h2>
+                  <RoughNotation
+                    type="underline"
+                    color="#0096FF"
+                    animationDelay={1300}
+                    animationDuration={1500}
+                    padding={1}
+                    show={true}
+                    strokeWidth={3}
+                    animate={true}
+                    iterations={4}
+                  >
+                    <h2 className="text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
+                      Our Distance
+                    </h2>
+                  </RoughNotation>
                   <p className="text-zinc-600 dark:text-zinc-400">
                     Check out how far you are from my location in Nellore,
                     Andhra. The interactive map below shows our distance in
