@@ -33,7 +33,7 @@ export default function Home() {
               >
                 <span>Frontend</span>
               </RoughNotation>
-              , backend, anime weekend
+                , backend, anime weekend
             </h1>
           </Reveal>
 
@@ -47,9 +47,9 @@ export default function Home() {
                 animationDuration={1500}
                 padding={1}
                 show={true}
-                strokeWidth={3}
+                strokeWidth={1}
                 animate={true}
-                iterations={2}
+                iterations={3}
               >
                 <span className="inline-block">Shyam</span>
               </RoughNotation>
@@ -115,7 +115,9 @@ export default function Home() {
           {/* GitHub Graph Container */}
           <div className="w-full lg:w-1/2 mt-4">
             <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6">
-              <RoughNotation
+             
+                <h2 className="text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
+                   <RoughNotation
                 type="underline"
                 color="#0096FF"
                 animationDelay={1300}
@@ -124,12 +126,11 @@ export default function Home() {
                 show={true}
                 strokeWidth={3}
                 animate={true}
-                iterations={4}
+                iterations={6}
               >
-                <h2 className="text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
                   Proof of Work
-                </h2>
               </RoughNotation>
+                </h2>
               <Reveal>
                 <GithubGraph />
               </Reveal>
@@ -141,7 +142,9 @@ export default function Home() {
             <div className="max-w-xl ml-auto mr-0">
               <Reveal>
                 <div className="mb-8">
-                  <RoughNotation
+                  
+                    <h2 className="text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
+                    <RoughNotation
                     type="underline"
                     color="#0096FF"
                     animationDelay={1300}
@@ -150,12 +153,11 @@ export default function Home() {
                     show={true}
                     strokeWidth={3}
                     animate={true}
-                    iterations={4}
+                    iterations={5}
                   >
-                    <h2 className="text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
                       Our Distance
-                    </h2>
                   </RoughNotation>
+                    </h2>
                   <p className="text-zinc-600 dark:text-zinc-400">
                     Check out how far you are from my location in Nellore,
                     Andhra. The interactive map below shows our distance in
