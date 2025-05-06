@@ -10,17 +10,17 @@ import { FaGithub } from "react-icons/fa";
 import Reveal from "./utils/Reveal";
 import MapWithDistance from "./components/MapWithDistance";
 import GithubGraph from "./components/GithubStats";
-import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import { TextNotation, TextNotationGroup } from "react-text-decorator";
 
 
 export default function Home() {
   return (
     <Container className="mt-9">
       <div className="max-w-2xl mb-12">
-        <RoughNotationGroup show={true}>
+        <TextNotationGroup show={true}>
           <Reveal>
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-              <RoughNotation
+              <TextNotation
                 type="highlight"
                 color="#0096FF"
                 animationDelay={1300}
@@ -28,11 +28,11 @@ export default function Home() {
                 padding={1}
                 show={true}
                 strokeWidth={3}
-                animate={true}
+               
                 iterations={4}
               >
                 <span>Frontend</span>
-              </RoughNotation>
+              </TextNotation>
                 , backend, anime weekend
             </h1>
           </Reveal>
@@ -40,7 +40,7 @@ export default function Home() {
           <Reveal>
             <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
               I&apos;m{" "}
-              <RoughNotation
+              <TextNotation
                 type="underline"
                 color="#0096FF"
                 animationDelay={1300}
@@ -48,17 +48,17 @@ export default function Home() {
                 padding={1}
                 show={true}
                 strokeWidth={1}
-                animate={true}
+               
                 iterations={3}
               >
                 <span className="inline-block">Shyam</span>
-              </RoughNotation>
+              </TextNotation>
               , a fullstack developer and tech enthusiast from India. I craft
               digital experiences with websockets, animation with Framer Motion,
               bringing both backend logic and frontend magic to life
             </p>
           </Reveal>
-        </RoughNotationGroup>
+        </TextNotationGroup>
         <Reveal>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -117,7 +117,7 @@ export default function Home() {
             <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6">
              
                 <h2 className="text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
-                   <RoughNotation
+                   <TextNotation
                 type="underline"
                 color="#0096FF"
                 animationDelay={1300}
@@ -125,11 +125,11 @@ export default function Home() {
                 padding={1}
                 show={true}
                 strokeWidth={3}
-                animate={true}
+          
                 iterations={6}
               >
                   Proof of Work
-              </RoughNotation>
+              </TextNotation>
                 </h2>
               <Reveal>
                 <GithubGraph />
@@ -144,7 +144,7 @@ export default function Home() {
                 <div className="mb-8">
                   
                     <h2 className="text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
-                    <RoughNotation
+                    <TextNotation
                     type="underline"
                     color="#0096FF"
                     animationDelay={1300}
@@ -152,11 +152,11 @@ export default function Home() {
                     padding={1}
                     show={true}
                     strokeWidth={3}
-                    animate={true}
+                 
                     iterations={5}
                   >
                       Our Distance
-                  </RoughNotation>
+                  </TextNotation>
                     </h2>
                   <p className="text-zinc-600 dark:text-zinc-400">
                     Check out how far you are from my location in Nellore,

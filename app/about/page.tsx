@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 
-import {type Metadata } from "next"
+"use client"
+// import {type Metadata } from "next"
 import Image from "next/image"
 
 import Reveal from "../utils/Reveal";
@@ -10,15 +11,15 @@ import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 import serious from '@/app/Images/moodoff.png'
-
+import { TextNotation } from "react-text-decorator";
 import { SocialText } from "../components/SocialText"
 
 
-export const metadata: Metadata = {
-  title: 'About',
-  description:
-    'I’m Shyam guna. Fullstack SDE based in India.'
-}
+// export const metadata: Metadata = {
+//   title: 'About',
+//   description:
+//     'I’m Shyam guna. Fullstack SDE based in India.'
+// }
 
 
 
@@ -44,9 +45,20 @@ const About = () => {
           <div className="lg:order-first lg:row-span-2">
             <Reveal>
               <h1 className="text-4xl font-bold tracking-tight">
-                Hey, I’m Shyam Guna — a Full Stack Developer from
-                India with a passion for building clean, creative, and scalable
-                digital experiences.
+                Hey, I’m{" "}
+                <TextNotation
+                  type="highlight"
+                  color="#0096FF"
+                  hover={true}
+                  iterations={6}
+                  strokeWidth={2}
+                  animationDuration={1400}
+                >
+                  {" "}
+                  Shyam Guna{" "}
+                </TextNotation>{" "}
+                — a Full Stack Developer from India with a passion for building
+                clean, creative, and scalable digital experiences.
               </h1>
             </Reveal>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
@@ -56,8 +68,73 @@ const About = () => {
                   resources.I turned my constaints into oppurtunities. I was
                   building my own curriculum through online courses,Youtube,
                   open-source projects,Blogs, and countless nights debugging
-                  code until sunrise.
+                  code until sunrise.#009
                 </p>
+              </Reveal>
+              <Reveal>
+              
+                  <p>
+                    As part of that journey, I even created an{" "}
+                    <a
+                      href="https://www.npmjs.com/package/react-text-decorator"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <TextNotation
+                        show={true}
+                        type="highlight"
+                        iterations={6}
+                        strokeWidth={4}
+                        color="#0096FF"
+                        animationDelay={1400}
+                        animationDuration={1800}
+                      >
+                        {" "}
+                        <span className="tracking-tight text-white">
+                          npm package
+                        </span>
+                      </TextNotation>
+                    </a>{" "}
+                    —{" "}
+                    <strong>
+                      <TextNotation
+                        type="underline"
+                        color="#0096FF"
+                        show={true}
+                        iterations={4}
+                        strokeWidth={2}
+                      >
+                        react-text-decorator
+                      </TextNotation>
+                    </strong>{" "}
+                    — that supports both{" "}
+                    <TextNotation
+                      type="circle"
+                      color="#0096FF"
+                      show={true}
+                      iterations={1}
+                    
+                      animationDelay={1400}
+                      animationDuration={1300}
+                    >
+                      React
+                    </TextNotation>
+                   {" "} and {" "}
+                    <TextNotation
+                      type="circle"
+                      color="#0096FF"
+                      show={true}
+                      iterations={1}
+                   
+                      animationDelay={1400}
+                      animationDuration={1300}
+                    >
+                      {" "}
+                      Next.js
+                    </TextNotation>
+                    . It's a lightweight tool for adding stylish text
+                    decorations, making UI writing cleaner and more expressive.
+               </p>
               </Reveal>
               <Reveal>
                 <p>
@@ -69,28 +146,18 @@ const About = () => {
                   turns ideas into real, usable products.
                 </p>
               </Reveal>
+
               <Reveal>
-                <p>
-                  Outside of Coding . I love watching anime and
-                  Film Lover. My anime collection ranges from the intricate
-                  mysteries of Death Note to the epic world-building stories of
-                  One Piece, where I find inspiration in Luffy's persistence and
-                  creativity when facing seemingly impossible obstacles.
-                </p>
-              </Reveal>
-                <Reveal>
                 <div className="flex justify-center items-center mt-3 space-x-4">
-              
                   <img
-                  src="/spd.svg"
-                  alt="Shyam Signature"
-                  width={320}
-                  height={200}
-                  className="mx-auto opacity-80 hover:opacity-100 transition-opacity duration-300 dark:invert"
+                    src="/spd.svg"
+                    alt="Shyam Signature"
+                    width={320}
+                    height={200}
+                    className="mx-auto opacity-80 hover:opacity-100 transition-opacity duration-300 dark:invert"
                   />
                 </div>
-                </Reveal>
-             
+              </Reveal>
             </div>
           </div>
           <div className="lg:pl-20">
