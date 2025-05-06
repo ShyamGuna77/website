@@ -35,7 +35,7 @@ const About = () => {
             <div className="max-w-xs px-2.5 lg:max-w-none">
               <Image
                 src={serious}
-                alt="A Anime based picture of mine (goood looking )"
+                alt="A Anime based picture of mine "
                 sizes="(min-width:1024px) 32rem , 20rem"
                 className="aspect-square rotate-3 rounded-2xl bg-zimc-100
             object-cover object-top dark:bg-zinc-800  dark:shadow-[0_10px_20px_rgba(59,130,246,0.5)] shadow-2xl shadow-blue-300"
@@ -49,10 +49,11 @@ const About = () => {
                 <TextNotation
                   type="highlight"
                   color="#0096FF"
-                  hover={true}
+                  show={true}
                   iterations={6}
                   strokeWidth={2}
-                  animationDuration={1400}
+                  animationDuration={3400}
+                  animationDelay={4400}
                 >
                   {" "}
                   Shyam Guna{" "}
@@ -72,78 +73,80 @@ const About = () => {
                 </p>
               </Reveal>
               <Reveal>
-              
-                  <p>
-                    As part of that journey, I even created an{" "}
-                    <a
-                      href="https://www.npmjs.com/package/react-text-decorator"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <TextNotation
-                        show={true}
-                        type="highlight"
-                        iterations={6}
-                        strokeWidth={4}
-                        color="#0096FF"
-                        animationDelay={1400}
-                        animationDuration={1800}
-                      >
-                        {" "}
-                        <span className="tracking-tight text-white">
-                          npm package
-                        </span>
-                      </TextNotation>
-                    </a>{" "}
-                    —{" "}
-                    <strong>
-                      <TextNotation
-                        type="underline"
-                        color="#0096FF"
-                        show={true}
-                        iterations={4}
-                        strokeWidth={2}
-                      >
-                        react-text-decorator
-                      </TextNotation>
-                    </strong>{" "}
-                    — that supports both{" "}
+                <p>
+                  As part of that journey, I even created an{" "}
+                  <a
+                    href="https://www.npmjs.com/package/react-text-decorator"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <TextNotation
-                      type="circle"
+                      hover={true}
+                      type="highlight"
+                      iterations={6}
+                      strokeWidth={2}
                       color="#0096FF"
-                      show={true}
-                      iterations={1}
-                    
-                      animationDelay={1400}
-                      animationDuration={1300}
-                    >
-                      React
-                    </TextNotation>
-                   {" "} and {" "}
-                    <TextNotation
-                      type="circle"
-                      color="#0096FF"
-                      show={true}
-                      iterations={1}
-                   
-                      animationDelay={1400}
-                      animationDuration={1300}
+                      animationDelay={1000}
+                      animationDuration={1800}
                     >
                       {" "}
-                      Next.js
+                      <span className="text-blue-500 underline hover:text-blue-800">
+                        npm package
+                      </span>
                     </TextNotation>
-                    . It's a lightweight tool for adding stylish text
-                    decorations, making UI writing cleaner and more expressive.
-               </p>
+                  </a>{" "}
+                  —{" "}
+                  <strong>
+                    <TextNotation
+                      type="underline"
+                      color="#0096FF"
+                      show={true}
+                      iterations={4}
+                      strokeWidth={2}
+                      animationDelay={5550}
+                      animationDuration={4000}
+                    >
+                      react-text-decorator
+                    </TextNotation>
+                  </strong>{" "}
+                  — that supports both{" "}
+                  <TextNotation
+                    type="box"
+                    color="#0096FF"
+                    show={true}
+                    iterations={1}
+                    animationDelay={4400}
+                    animationDuration={4300}
+                  >
+                    React
+                  </TextNotation>{" "}
+                  and{" "}
+                  <TextNotation
+                    type="circle"
+                    color="#0096FF"
+                    show={true}
+                    iterations={1}
+                    animationDelay={4000}
+                    animationDuration={5300}
+                  >
+                    {" "}
+                    Next.js
+                  </TextNotation>
+                  . It's a lightweight tool for adding stylish text decorations,
+                  making UI writing cleaner and more expressive.
+                </p>
               </Reveal>
               <Reveal>
                 <p>
+                  
+                  
                   My learning playground? Twitter , GitHub repos, and Discord
                   Convos. I stay on top of the latest tech trends by being
                   active in online dev communities, constantly soaking up
                   insights and experimenting with new tools. I love building
                   sleek frontends, robust backends, and anything in between that
                   turns ideas into real, usable products.
+                
                 </p>
               </Reveal>
 

@@ -23,12 +23,11 @@ export default function Home() {
               <TextNotation
                 type="highlight"
                 color="#0096FF"
-                animationDelay={1300}
-                animationDuration={1500}
+                animationDelay={4500}
+                animationDuration={3500}
                 padding={1}
                 show={true}
                 strokeWidth={3}
-               
                 iterations={4}
               >
                 <span>Frontend</span>
@@ -43,9 +42,9 @@ export default function Home() {
               <TextNotation
                 type="underline"
                 color="#0096FF"
-                animationDelay={1300}
+                animationDelay={2300}
                 animationDuration={1500}
-                padding={1}
+                
                 show={true}
                 strokeWidth={1}
                
@@ -120,8 +119,8 @@ export default function Home() {
                    <TextNotation
                 type="underline"
                 color="#0096FF"
-                animationDelay={1300}
-                animationDuration={1500}
+                animationDelay={5500}
+                animationDuration={4500}
                 padding={1}
                 show={true}
                 strokeWidth={3}
@@ -147,8 +146,8 @@ export default function Home() {
                     <TextNotation
                     type="underline"
                     color="#0096FF"
-                    animationDelay={1300}
-                    animationDuration={1500}
+                    animationDelay={5500}
+                    animationDuration={4500}
                     padding={1}
                     show={true}
                     strokeWidth={3}
