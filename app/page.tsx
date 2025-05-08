@@ -38,7 +38,7 @@ export default function Home() {
 
           <Reveal>
             <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-              I&apos;m
+              I&apos;m {" "}
               <TextNotation
                 type="underline"
                 color="#0096FF"
@@ -82,31 +82,7 @@ export default function Home() {
           </Reveal>
         </div>
 
-        {/* <div className="w-full flex justify-center mt-24">
-        <GithubGraph />
-        <div className="w-full max-w-xl ml-auto mr-0">
-          <Reveal>
-            <div className="mb-8">
-              <h2 className = "text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
-                Our Distance
-              </h2>
-             
-              <p className="text-zinc-600 dark:text-zinc-400">
-                Check out how far you are from my location in Nellore, Andhra.
-                The interactive map below shows our distance in real-time by
-                accessing your location.It may take few secs to load map.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="w-full overflow-hidden mb-16 rounded-2xl shadow-lg">
-              <MapWithDistance />
-            </div>
-          </Reveal>
-        </div>
-      </div> */}
-
+        
         <div className="w-full px-4 md:px-8 mt-24">
           <div className="flex flex-col lg:flex-row gap-12 justify-center items-start">
             {/* GitHub Graph Container */}

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
-"use client"
+"use client";
 
 import { useEffect, useState, useRef } from "react";
 import {
@@ -122,6 +121,7 @@ const MapComponent = () => {
   );
   const [distance, setDistance] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const mapRef = useRef<L.Map | null>(null);
 
   // Toronto coordinates
   const creatorLat = 14.4426;
@@ -207,6 +207,31 @@ const MapComponent = () => {
     };
   }, []);
 
+  // Initialize map when component mounts
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.invalidateSize();
+    }
+  }, []);
+
+  // Add resize observer
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(() => {
+      if (mapRef.current) {
+        mapRef.current.invalidateSize();
+      }
+    });
+
+    const mapContainer = document.querySelector(".leaflet-container");
+    if (mapContainer) {
+      resizeObserver.observe(mapContainer);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
   // Get user's location
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -262,6 +287,7 @@ const MapComponent = () => {
           dragging={true}
           doubleClickZoom={true}
           attributionControl={true}
+          ref={mapRef}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
