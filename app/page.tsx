@@ -11,6 +11,7 @@ import Reveal from "./utils/Reveal";
 import MapWithDistance from "./components/MapWithDistance";
 import GithubGraph from "./components/GithubStats";
 import { TextNotation, TextNotationGroup } from "react-text-decorator";
+import MusicPlayer from "./components/MusicPlayer";
 
 export default function Home() {
   return (
@@ -22,8 +23,8 @@ export default function Home() {
               <TextNotation
                 type="highlight"
                 color="#0096FF"
-                animationDelay={7500}
-                animationDuration={4500}
+                animationDelay={4000}
+                animationDuration={67000}
                 padding={1}
                 show={true}
                 strokeWidth={4}
@@ -38,21 +39,10 @@ export default function Home() {
 
           <Reveal>
             <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-              I&apos;m {" "}
-              <TextNotation
-                type="underline"
-                color="#0096FF"
-                animationDelay={500}
-                animationDuration={1400}
-                padding={1}
-                hover={true}
-                iterations={5}
-              >
-                Shyam
-              </TextNotation>
-              , a fullstack developer and tech enthusiast from India. I craft
-              digital experiences with websockets, animation with Framer Motion,
-              bringing both backend logic and frontend magic to life
+              I&apos;m Shyam , a fullstack developer and tech enthusiast from
+              India. I craft digital experiences with websockets, animation with
+              Framer Motion, bringing both backend logic and frontend magic to
+              life
             </p>
           </Reveal>
 
@@ -82,18 +72,17 @@ export default function Home() {
           </Reveal>
         </div>
 
-        
         <div className="w-full px-4 md:px-8 mt-24">
           <div className="flex flex-col lg:flex-row gap-12 justify-center items-start">
             {/* GitHub Graph Container */}
             <div className="w-full lg:w-1/2 mt-4">
-              <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-4 sm:p-6">
+              <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6">
                 <h2 className="text-2xl font-bold text-center tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100 mb-4">
                   <TextNotation
                     type="underline"
                     color="#0096FF"
                     animationDelay={700}
-                    animationDuration={4500}
+                    animationDuration={5000}
                     show={true}
                     strokeWidth={3}
                     iterations={6}
@@ -108,6 +97,13 @@ export default function Home() {
                   </div>
                 </Reveal>
               </div>
+
+              {/* Music Player Section */}
+              <div className="w-full mt-8">
+                <Reveal>
+                  <MusicPlayer />
+                </Reveal>
+              </div>
             </div>
 
             {/* Map + Text Container */}
@@ -119,8 +115,8 @@ export default function Home() {
                       <TextNotation
                         type="underline"
                         color="#0096FF"
-                        animationDelay={500}
-                        animationDuration={4500}
+                        animationDelay={6000}
+                        animationDuration={6000}
                         padding={1}
                         show={true}
                         strokeWidth={3}
@@ -131,10 +127,10 @@ export default function Home() {
                       </TextNotation>
                     </h2>
                     <p className="text-zinc-600 dark:text-zinc-400">
-                      Check out how far you are from my location in Nellore,
-                      Andhra. The interactive map below shows our distance in
-                      real-time by accessing your location. It may take a few
-                      secs to load the map.
+                      Check out how far you are from my location. The
+                      interactive map below shows our distance in real-time by
+                      accessing your location. It may take a few secs to load
+                      the map.
                     </p>
                   </div>
                 </Reveal>
