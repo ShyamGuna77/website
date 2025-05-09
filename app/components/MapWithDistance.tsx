@@ -41,10 +41,10 @@ const MapWithDistance = () => {
       {isClient && isMapReady ? (
         <MapComponentWithNoSSR />
       ) : (
-        <div className="w-full h-80 flex items-center justify-center">
-          <div className="flex flex-col items-center">
+        <div className="w-full h-80 flex items-center justify-center bg-gray-50/50 dark:bg-zinc-900/50">
+          <div className="flex flex-col items-center justify-center space-y-4">
             <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-            <p className="mt-4 text-gray-600 dark:text-gray-300">
+            <p className="text-gray-600 dark:text-gray-300 font-medium">
               Loading map...
             </p>
           </div>

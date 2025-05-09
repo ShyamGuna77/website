@@ -107,7 +107,7 @@ export default function Home() {
             </div>
 
             {/* Map + Text Container */}
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 mt-20">
               <div className="max-w-xl ml-auto mr-0">
                 <Reveal>
                   <div className="mb-8">
@@ -136,7 +136,7 @@ export default function Home() {
                 </Reveal>
 
                 <Reveal>
-                  <div className="w-full overflow-hidden mb-16 rounded-2xl shadow-lg">
+                  <div className="w-full overflow-hidden mb-16 rounded-2xl shadow-lg mt-8">
                     <MapWithDistance />
                   </div>
                 </Reveal>

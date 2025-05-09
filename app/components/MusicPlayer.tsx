@@ -187,7 +187,7 @@ export default function MusicPlayer() {
 
   return (
     <div
-      className={`relative rounded-3xl overflow-hidden ${colors.bg} flex flex-col items-center p-4 h-[600px] max-w-4xl mx-auto`}
+      className={`relative rounded-3xl overflow-hidden ${colors.bg} flex flex-col items-center p-4 h-[600px] max-w-4xl mx-auto md:w-full sm:w-[95%] w-[90%]`}
     >
       {/* Header */}
       <div className="w-full flex justify-between items-center mb-4">
@@ -206,7 +206,7 @@ export default function MusicPlayer() {
       </div>
 
       {/* Album Art with Progress Circle */}
-      <div className="relative w-[390px] h-[280px] mb-4">
+      <div className="relative w-[390px] h-[280px] mb-4 md:w-[390px] sm:w-[320px]  md:h-[280px] sm:h-[230px] ">
         <svg
           className="absolute w-full h-full -rotate-90"
           viewBox="0 0 264 264"
@@ -247,7 +247,7 @@ export default function MusicPlayer() {
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
-            className="w-[200px] h-[200px] rounded-full overflow-hidden border-2 border-white/20"
+            className="w-[200px] h-[200px] md:w-[200px] sm:w-[160px] md:h-[200px] sm:h-[160px]  rounded-full overflow-hidden border-2 border-white/20"
             animate={{ rotate: isPlaying ? 360 : 0 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
@@ -269,11 +269,13 @@ export default function MusicPlayer() {
       </div>
 
       {/* Song Info */}
-      <div className="text-center mb-4">
-        <h2 className="text-white text-lg font-bold mb-1">
+      <div className="text-center mb-4 md:w-auto sm:w-[90%] w-[85%]">
+        <h2 className="text-white text-lg font-bold mb-1 md:text-lg sm:text-base ">
           {currentSong.title}
         </h2>
-        <p className="text-white/70 text-sm">{currentSong.artist}</p>
+        <p className="text-white/70 md:text-sm sm:text-xs text-xs">
+          {currentSong.artist}
+        </p>
       </div>
 
       {/* Time Slider */}
@@ -305,31 +307,47 @@ export default function MusicPlayer() {
       </div>
 
       {/* Controls */}
-      <div className="flex items-center justify-between w-full mb-4">
+      <div className="flex items-center justify-between w-full mb-4 md:px-4 sm:px-2 px-1">
         <button
           onClick={() => setIsShuffle(!isShuffle)}
           className={`text-white ${isShuffle ? colors.primary : ""}`}
         >
           <Shuffle size={18} />
         </button>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 md:gap-4 sm:gap-2 ">
           <button className="text-white" onClick={playPreviousSong}>
-            <SkipBack size={24} fill="currentColor" />
+            <SkipBack
+              size={24}
+              fill="currentColor"
+              className="md:w-6 sm:w-5 w-4"
+            />
           </button>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={togglePlay}
-            className={`${colors.button} w-12 h-12 rounded-full flex items-center justify-center`}
+            className={`${colors.button} md:w-12 md:h-12 sm:w-10 sm:h-10 w-8 h-8 rounded-full flex items-center justify-center`}
           >
             {isPlaying ? (
-              <Pause size={24} fill="white" className="text-white" />
+              <Pause
+                size={24}
+                fill="white"
+                className="text-white md:w-6 sm:w-5 w-4"
+              />
             ) : (
-              <Play size={24} fill="white" className="text-white ml-1" />
+              <Play
+                size={24}
+                fill="white"
+                className="text-white ml-1 md:w-6 sm:w-5 w-4"
+              />
             )}
           </motion.button>
           <button className="text-white" onClick={playNextSong}>
-            <SkipForward size={24} fill="currentColor" />
+            <SkipForward
+              size={24}
+              fill="currentColor"
+              className="md:w-6 sm:w-5 w-4"
+            />
           </button>
         </div>
         <button

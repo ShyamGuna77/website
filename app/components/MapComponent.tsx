@@ -267,10 +267,10 @@ const MapComponent = () => {
     <>
       <div className="w-full h-80 relative p-4">
         {isLoading && (
-          <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-100/80 dark:bg-zinc-900/80">
-            <div className="flex flex-col items-center">
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-100/80 dark:bg-zinc-900/80 backdrop-blur-sm">
+            <div className="flex flex-col items-center justify-center space-y-4">
               <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-              <p className="mt-4 text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-300 font-medium">
                 Locating you on the map...
               </p>
             </div>
