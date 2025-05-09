@@ -1,27 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 
-"use client"
+"use client";
 // import {type Metadata } from "next"
-import Image from "next/image"
+import Image from "next/image";
 
 import Reveal from "../utils/Reveal";
-import { Container } from "../components/Container"
+import { Container } from "../components/Container";
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
-import serious from '@/app/Images/moodoff.png'
+import serious from "@/app/Images/moodoff.png";
 import { TextNotation } from "react-text-decorator";
-import { SocialText } from "../components/SocialText"
-
+import { SocialText } from "../components/SocialText";
 
 // export const metadata: Metadata = {
 //   title: 'About',
 //   description:
 //     'I’m Shyam guna. Fullstack SDE based in India.'
 // }
-
-
 
 const About = () => {
   return (
@@ -109,44 +106,19 @@ const About = () => {
                       react-text-decorator
                     </TextNotation>
                   </strong>{" "}
-                  — that supports both{" "}
-                  <TextNotation
-                    type="box"
-                    color="#0096FF"
-                    show={true}
-                    iterations={1}
-                    animationDelay={4400}
-                    animationDuration={4300}
-                  >
-                    React
-                  </TextNotation>{" "}
-                  and{" "}
-                  <TextNotation
-                    type="circle"
-                    color="#0096FF"
-                    show={true}
-                    iterations={1}
-                    animationDelay={4000}
-                    animationDuration={5300}
-                  >
-                    {" "}
-                    Next.js
-                  </TextNotation>
-                  . It's a lightweight tool for adding stylish text decorations,
-                  making UI writing cleaner and more expressive.
+                  — that supports both React and Next.js . It's a lightweight
+                  tool for adding stylish text decorations, making UI writing
+                  cleaner and more expressive.
                 </p>
               </Reveal>
               <Reveal>
                 <p>
-                  
-                  
                   My learning playground? Twitter , GitHub repos, and Discord
                   Convos. I stay on top of the latest tech trends by being
                   active in online dev communities, constantly soaking up
                   insights and experimenting with new tools. I love building
                   sleek frontends, robust backends, and anything in between that
                   turns ideas into real, usable products.
-                
                 </p>
               </Reveal>
 
@@ -209,6 +181,6 @@ const About = () => {
       </Container>
     </>
   );
-}
+};
 
-export default About
+export default About;
