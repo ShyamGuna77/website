@@ -69,7 +69,7 @@ export default function Home() {
         </Reveal>
       </div>
 
-      <div className="w-full mt-12 sm:mt-24">
+      <div className="w-full mt-8 sm:mt-16 lg:mt-24">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 justify-center items-start">
           {/* GitHub Graph Container */}
           <div className="w-full lg:w-1/2">
@@ -110,7 +110,7 @@ export default function Home() {
           <div className="w-full lg:w-1/2 mt-4 lg:mt-0">
             <div className="max-w-xl mx-auto lg:ml-auto lg:mr-0">
               <Reveal>
-                <div className="mb-4 sm:mb-8">
+                <div className="mb-4 sm:mb-6">
                   <h2 className="text-xl sm:text-2xl font-bold text-center tracking-tight text-zinc-800 dark:text-zinc-100 mb-4">
                     <TextNotation
                       type="underline"
@@ -134,7 +134,7 @@ export default function Home() {
               </Reveal>
 
               <Reveal>
-                <div className="w-full overflow-hidden mb-6 sm:mb-16 mt-4 sm:mt-8">
+                <div className="w-full overflow-hidden mb-4 sm:mb-8 mt-2 sm:mt-4">
                   <div className="scale-[0.85] sm:scale-100 origin-center mx-auto">
                     <MapWithDistance />
                   </div>

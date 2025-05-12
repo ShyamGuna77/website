@@ -152,6 +152,8 @@ const GlobeComponent = () => {
           defaultLocation.lng
         );
         setDistance(dist);
+        
+        console.log("distance", dist);
 
         const newLocations = [
           {
@@ -217,18 +219,18 @@ const GlobeComponent = () => {
 
   return (
     <div className="w-full">
-      <div className="w-full h-[400px]">
+      <div className="w-full h-[600px] sm:h-[500px]  mb-4">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="w-full h-full"
+          transition={{ duration: 0.5 }}
+          className="w-full h-full flex items-center justify-center"
         >
           <Globe
             ref={globeRef}
             globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-            width={400}
-            height={400}
+            width={600}
+            height={600}
             htmlElementsData={locations}
             htmlLat="lat"
             htmlLng="lng"
@@ -256,12 +258,12 @@ const GlobeComponent = () => {
             arcAltitude={0.4}
             arcAltitudeAutoScale={0.5}
             arcStroke={0.7}
-            arcCurveResolution={64}
-            arcCircularResolution={5}
-            arcsTransitionDuration={1000}
+            arcCurveResolution={32}
+            arcCircularResolution={3}
+            arcsTransitionDuration={500}
             arcDashLength={0.2}
             arcDashGap={0.1}
-            arcDashAnimateTime={2000}
+            arcDashAnimateTime={1000}
             polygonsData={countries.features.filter(
               (d) => d.properties.ISO_A2 !== "AQ"
             )}
@@ -285,7 +287,7 @@ const GlobeComponent = () => {
                 </div>
               `;
             }}
-            polygonsTransitionDuration={300}
+            polygonsTransitionDuration={200}
             backgroundColor="rgba(0,0,0,0)"
           />
         </motion.div>
@@ -294,19 +296,23 @@ const GlobeComponent = () => {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="text-center mt-4 text-gray-700 dark:text-gray-300"
+          transition={{ duration: 0.3, delay: 0.2 }}
+          className="text-center mt-2"
         >
-          <p className="text-gray-600 dark:text-zinc-400 text-md max-w-md mx-auto">
+          <p className="text-xl sm:text-lg text-zinc-800 dark:text-zinc-200 max-w-md mx-auto px-4">
             I&apos;m based in{" "}
-            <strong className="text-blue-500">Andhra, India</strong>,
-            approximately{" "}
-            <span className="font-medium text-blue-500">{distance} </span>
-             kilometers from your current location.
-            {distance > 5000 && " That's quite a journey!"}
+            <strong className="text-blue-600 dark:text-blue-400">
+              Andhra, India
+            </strong>
+            , approximately{" "}
+            <span className="font-semibold text-blue-600 dark:text-blue-400">
+              {distance}{" "}
+            </span>
+            kilometers from your current location.
+            {distance > 2000 && " That's quite a journey!"}
             {distance > 10000 &&
               " We're almost on opposite sides of the globe!"}
-            {distance < 100 && " Wow, we're practically neighbors!"}
+            {distance < 700 && " Wow, we're practically neighbors!"}
           </p>
         </motion.div>
       )}

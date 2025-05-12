@@ -42,7 +42,7 @@ const MapWithDistance = () => {
       {isClient && isGlobeReady ? (
         <GlobeComponentWithNoSSR />
       ) : (
-        <div className="w-full h-[400px] flex items-center justify-center">
+        <div className="w-full h-[500px] flex items-center justify-center">
           <div className="flex flex-col items-center justify-center space-y-4">
             <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
             <p className="text-gray-600 text-center dark:text-gray-300 font-medium">
