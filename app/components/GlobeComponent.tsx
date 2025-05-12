@@ -43,6 +43,8 @@ const GlobeComponent = () => {
   });
   const [hoverD, setHoverD] = useState<Country | null>(null);
   const [distance, setDistance] = useState<number | null>(null);
+  const [isRotating, setIsRotating] = useState(true);
+  const [rotationSpeed, setRotationSpeed] = useState(1.5);
 
   const markerSvg = `<svg viewBox="-4 0 36 36">
     <path fill="currentColor" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
@@ -152,7 +154,7 @@ const GlobeComponent = () => {
           defaultLocation.lng
         );
         setDistance(dist);
-        
+
         console.log("distance", dist);
 
         const newLocations = [
@@ -191,14 +193,64 @@ const GlobeComponent = () => {
 
   useEffect(() => {
     if (globeRef.current) {
-      // Auto-rotate
+      // Enhanced auto-rotate settings
       globeRef.current.controls().autoRotate = true;
-      globeRef.current.controls().autoRotateSpeed = 0.5;
+      globeRef.current.controls().autoRotateSpeed = 1.5;
+      globeRef.current.controls().enableZoom = true;
+      globeRef.current.controls().enablePan = true;
+      globeRef.current.controls().minDistance = 200;
+      globeRef.current.controls().maxDistance = 500;
 
-      // Set initial position
-      globeRef.current.pointOfView({ altitude: 2.5 });
+      // Set initial position with smooth animation
+      globeRef.current.pointOfView(
+        { altitude: 2.5 },
+        1000 // Add animation duration
+      );
+
+      // Add smooth rotation on mount
+      setTimeout(() => {
+        if (globeRef.current) {
+          globeRef.current.controls().autoRotate = true;
+          globeRef.current.controls().autoRotateSpeed = 1.5;
+        }
+      }, 1000);
     }
   }, []);
+
+  // Add window resize handler for responsive rotation
+  useEffect(() => {
+    const handleResize = () => {
+      if (globeRef.current) {
+        // Adjust rotation speed based on screen size
+        const speed = window.innerWidth < 640 ? 1 : 1.5;
+        globeRef.current.controls().autoRotateSpeed = speed;
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Function to toggle rotation
+  const toggleRotation = () => {
+    if (globeRef.current) {
+      const newRotationState = !isRotating;
+      setIsRotating(newRotationState);
+      globeRef.current.controls().autoRotate = newRotationState;
+    }
+  };
+
+  // Function to handle speed change
+  const handleSpeedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newSpeed = parseFloat(e.target.value);
+    setRotationSpeed(newSpeed);
+    if (globeRef.current) {
+      globeRef.current.controls().autoRotateSpeed = newSpeed;
+      // Add a slight tilt effect based on speed
+      const tiltAngle = Math.min(newSpeed * 0.2, 0.5);
+      globeRef.current.pointOfView({ altitude: 2.5, lat: tiltAngle * 10 }, 300);
+    }
+  };
 
   if (!mounted) {
     return null;
@@ -206,7 +258,7 @@ const GlobeComponent = () => {
 
   if (isLoading) {
     return (
-      <div className="w-full h-[400px] flex items-center justify-center">
+      <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] flex items-center justify-center">
         <div className="flex flex-col items-center justify-center space-y-4">
           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
           <p className="text-gray-600 text-center dark:text-gray-300 font-medium">
@@ -218,8 +270,8 @@ const GlobeComponent = () => {
   }
 
   return (
-    <div className="w-full">
-      <div className="w-full h-[600px] sm:h-[500px]  mb-4">
+    <div className="w-full flex flex-col items-center">
+      <div className="w-full max-w-[350px] sm:max-w-[600px] h-[300px] sm:h-[400px] md:h-[500px] mb-2 relative">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -229,8 +281,8 @@ const GlobeComponent = () => {
           <Globe
             ref={globeRef}
             globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-            width={600}
-            height={600}
+            width={window.innerWidth < 640 ? 350 : 600}
+            height={window.innerWidth < 640 ? 350 : 600}
             htmlElementsData={locations}
             htmlLat="lat"
             htmlLng="lng"
@@ -292,6 +344,58 @@ const GlobeComponent = () => {
           />
         </motion.div>
       </div>
+
+      {/* Controls */}
+      <div className="w-full max-w-[300px] mx-auto px-4 flex flex-col items-center space-y-3">
+        <div className="w-full flex items-center justify-between">
+          <span className="text-xs text-gray-500 dark:text-gray-400">0.1x</span>
+          <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+            {rotationSpeed.toFixed(1)}x
+          </span>
+          <span className="text-xs text-gray-500 dark:text-gray-400">7x</span>
+        </div>
+        <div className="w-full flex items-center space-x-3">
+          <input
+            type="range"
+            min="0.1"
+            max="7"
+            step="0.1"
+            value={rotationSpeed}
+            onChange={handleSpeedChange}
+            className="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-600 active:accent-blue-700"
+            style={{
+              background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${
+                (rotationSpeed / 7) * 100
+              }%, #e5e7eb ${(rotationSpeed / 7) * 100}%, #e5e7eb 100%)`,
+            }}
+          />
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={toggleRotation}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1.5 rounded-full shadow-lg transition-all duration-300 flex items-center space-x-1.5 text-sm"
+            >
+              <span>{isRotating ? "Stop" : "Start"}</span>
+              <svg
+                className={`w-4 h-4 transition-transform duration-300 ${
+                  isRotating ? "animate-spin" : ""
+                }`}
+                style={{ animationDuration: `${2 / rotationSpeed}s` }}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
       {distance !== null && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -299,7 +403,7 @@ const GlobeComponent = () => {
           transition={{ duration: 0.3, delay: 0.2 }}
           className="text-center mt-2"
         >
-          <p className="text-xl sm:text-lg text-zinc-800 dark:text-zinc-200 max-w-md mx-auto px-4">
+          <p className="text-sm sm:text-lg text-zinc-800 dark:text-zinc-200 max-w-md mx-auto px-4">
             I&apos;m based in{" "}
             <strong className="text-blue-600 dark:text-blue-400">
               Andhra, India
