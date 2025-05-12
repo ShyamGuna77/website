@@ -187,9 +187,31 @@ const MapComponent = () => {
       }
       .leaflet-container {
         font-family: inherit;
-        background-color: rgba(210, 232, 252, 0.2) !important;
+        background-color: #1a1a2e !important;
         border: 3px solid #3b82f6;
-        border-radius: 8px;
+        border-radius: 50%;
+        aspect-ratio: 1;
+        max-width: 400px;
+        margin: 0 auto;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+      }
+      
+      .leaflet-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 50%;
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+        z-index: 1000;
+      }
+
+      .leaflet-tile-pane {
+        filter: brightness(0.6) contrast(1.2) saturate(1.2);
       }
       
       /* Hide Leaflet controls */
@@ -265,9 +287,9 @@ const MapComponent = () => {
 
   return (
     <>
-      <div className="w-full h-80 relative p-4">
+      <div className="w-full h-[400px] relative p-4">
         {isLoading && (
-          <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-100/80 dark:bg-zinc-900/80 backdrop-blur-sm">
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-100/80 dark:bg-zinc-900/80 backdrop-blur-sm rounded-full">
             <div className="flex flex-col items-center justify-center space-y-4">
               <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
               <p className="text-gray-600 dark:text-gray-300 font-medium">
@@ -291,7 +313,7 @@ const MapComponent = () => {
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
           />
 
           {/* Creator marker */}
@@ -312,7 +334,7 @@ const MapComponent = () => {
 
               <AnimatedPolyline
                 positions={[creatorPosition, userPosition]}
-                color="#e53e3e"
+                color="#3b82f6"
               />
 
               {/* Controller to fit map bounds to show both markers */}
@@ -339,7 +361,7 @@ const MapComponent = () => {
             <strong className="text-blue-500">Andhra, India</strong>,
             approximately{" "}
             <span className="font-medium">{distance} kilometers</span> from your
-            current location.Based on Your IP address.
+            current location.
             {distance > 5000 && " That's quite a journey!"}
             {distance > 10000 &&
               " We're almost on opposite sides of the globe!"}
