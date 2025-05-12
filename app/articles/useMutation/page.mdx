@@ -2,10 +2,19 @@ import Callout from "../../components/Callout";
 import { ArticleLayout } from "../../components/ArticleLayout";
 
 export const article = {
-  author: 'Shyam Guna',
-  date: '2025-04-20',
-  title: 'Tanstack UseMutation Guide',
-  description: 'A comprehensive guide to understanding and using the useMutation hook from Tanstack Query in React applications.',
+  author: "Shyam Guna",
+  date: "2025-04-20",
+  title: "Tanstack UseMutation Guide",
+  description:
+    "A comprehensive guide to understanding and using the useMutation hook from Tanstack Query in React applications.",
+  tags: [
+    "React",
+    "Tanstack Query",
+    "JavaScript",
+    "Web Development",
+    "API",
+    "State Management",
+  ],
 };
 
 export const metadata = {
@@ -44,10 +53,10 @@ const {
   isSuccess,
   error,
   data,
-  reset
+  reset,
 } = useMutation({
   mutationFn: (variables) => {
-    return axios.post('/api/data', variables);
+    return axios.post("/api/data", variables);
   },
   onSuccess: (data, variables, context) => {
     // Handle success
@@ -57,7 +66,7 @@ const {
   },
   onSettled: (data, error, variables, context) => {
     // Called regardless of success or failure
-  }
+  },
 });
 ```
 
@@ -103,11 +112,11 @@ function CreateTodo() {
 
   const { mutate, isLoading, isError, error } = useMutation({
     mutationFn: (newTodo) => {
-      return axios.post('/api/todos', newTodo);
+      return axios.post("/api/todos", newTodo);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['todos'] });
-    }
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
+    },
   });
 
   const handleSubmit = (e) => {
@@ -118,7 +127,7 @@ function CreateTodo() {
   return (
     <div>
       <button onClick={handleSubmit} disabled={isLoading}>
-        {isLoading ? 'Adding...' : 'Add Todo'}
+        {isLoading ? "Adding..." : "Add Todo"}
       </button>
       {isError && <div>Error: {error.message}</div>}
     </div>
@@ -136,11 +145,11 @@ const queryClient = useQueryClient();
 const { mutate } = useMutation({
   mutationFn: updateTodo,
   onMutate: async (newTodo) => {
-    await queryClient.cancelQueries({ queryKey: ['todos'] });
-    const previousTodos = queryClient.getQueryData(['todos']);
+    await queryClient.cancelQueries({ queryKey: ["todos"] });
+    const previousTodos = queryClient.getQueryData(["todos"]);
 
-    queryClient.setQueryData(['todos'], old => {
-      return old.map(todo => {
+    queryClient.setQueryData(["todos"], (old) => {
+      return old.map((todo) => {
         if (todo.id === newTodo.id) {
           return { ...todo, ...newTodo };
         }
@@ -151,10 +160,10 @@ const { mutate } = useMutation({
     return { previousTodos };
   },
   onError: (err, newTodo, context) => {
-    queryClient.setQueryData(['todos'], context.previousTodos);
+    queryClient.setQueryData(["todos"], context.previousTodos);
   },
   onSettled: () => {
-    queryClient.invalidateQueries({ queryKey: ['todos'] });
+    queryClient.invalidateQueries({ queryKey: ["todos"] });
   },
 });
 ```
@@ -164,11 +173,11 @@ const { mutate } = useMutation({
 ```jsx
 const { mutate } = useMutation({
   mutationFn: (newTodo) => {
-    return axios.post('/api/todos', newTodo);
+    return axios.post("/api/todos", newTodo);
   },
 });
 
-mutate({ title: 'Do laundry', completed: false });
+mutate({ title: "Do laundry", completed: false });
 ```
 
 ### Using mutateAsync for Promise Chains
@@ -180,10 +189,10 @@ const { mutateAsync } = useMutation({
 
 const handleSubmit = async () => {
   try {
-    const todo = await mutateAsync({ title: 'New todo' });
-    console.log('New todo:', todo);
+    const todo = await mutateAsync({ title: "New todo" });
+    console.log("New todo:", todo);
   } catch (error) {
-    console.error('Failed to create todo:', error);
+    console.error("Failed to create todo:", error);
   }
 };
 ```
@@ -207,21 +216,21 @@ if (isSuccess) {
 const createTodoMutation = useMutation({
   mutationFn: createTodo,
   onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ['todos'] });
+    queryClient.invalidateQueries({ queryKey: ["todos"] });
   },
 });
 
 const updateTodoMutation = useMutation({
   mutationFn: updateTodo,
   onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ['todos'] });
+    queryClient.invalidateQueries({ queryKey: ["todos"] });
   },
 });
 
 const deleteTodoMutation = useMutation({
   mutationFn: deleteTodo,
   onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ['todos'] });
+    queryClient.invalidateQueries({ queryKey: ["todos"] });
   },
 });
 ```
@@ -232,14 +241,14 @@ const deleteTodoMutation = useMutation({
 
 ```jsx
 function TodoForm() {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const queryClient = useQueryClient();
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: (newTodo) => axios.post('/api/todos', newTodo),
+    mutationFn: (newTodo) => axios.post("/api/todos", newTodo),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['todos'] });
-      setTitle('');
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      setTitle("");
     },
   });
 
@@ -257,7 +266,7 @@ function TodoForm() {
         disabled={isLoading}
       />
       <button type="submit" disabled={isLoading}>
-        {isLoading ? 'Adding...' : 'Add Todo'}
+        {isLoading ? "Adding..." : "Add Todo"}
       </button>
     </form>
   );
@@ -267,16 +276,16 @@ function TodoForm() {
 ### With React Hook Form
 
 ```jsx
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 
 function TodoFormWithHookForm() {
   const { register, handleSubmit, reset } = useForm();
   const queryClient = useQueryClient();
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: (data) => axios.post('/api/todos', data),
+    mutationFn: (data) => axios.post("/api/todos", data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['todos'] });
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
       reset();
     },
   });
@@ -287,9 +296,9 @@ function TodoFormWithHookForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('title')} disabled={isLoading} />
+      <input {...register("title")} disabled={isLoading} />
       <button type="submit" disabled={isLoading}>
-        {isLoading ? 'Adding...' : 'Add Todo'}
+        {isLoading ? "Adding..." : "Add Todo"}
       </button>
     </form>
   );
@@ -314,49 +323,47 @@ function useTodoMutations() {
   const queryClient = useQueryClient();
 
   const create = useMutation({
-    mutationFn: (newTodo) => axios.post('/api/todos', newTodo),
+    mutationFn: (newTodo) => axios.post("/api/todos", newTodo),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['todos'] });
-    }
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
+    },
   });
 
   const update = useMutation({
     mutationFn: (updatedTodo) =>
       axios.put(`/api/todos/${updatedTodo.id}`, updatedTodo),
     onMutate: async (newTodo) => {
-      await queryClient.cancelQueries({ queryKey: ['todos'] });
-      const previousTodos = queryClient.getQueryData(['todos']);
-      queryClient.setQueryData(['todos'], old =>
-        old.map(todo =>
-          todo.id === newTodo.id ? newTodo : todo
-        )
+      await queryClient.cancelQueries({ queryKey: ["todos"] });
+      const previousTodos = queryClient.getQueryData(["todos"]);
+      queryClient.setQueryData(["todos"], (old) =>
+        old.map((todo) => (todo.id === newTodo.id ? newTodo : todo))
       );
       return { previousTodos };
     },
     onError: (err, newTodo, context) => {
-      queryClient.setQueryData(['todos'], context.previousTodos);
+      queryClient.setQueryData(["todos"], context.previousTodos);
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['todos'] });
-    }
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
+    },
   });
 
   const remove = useMutation({
     mutationFn: (id) => axios.delete(`/api/todos/${id}`),
     onMutate: async (id) => {
-      await queryClient.cancelQueries({ queryKey: ['todos'] });
-      const previousTodos = queryClient.getQueryData(['todos']);
-      queryClient.setQueryData(['todos'], old =>
-        old.filter(todo => todo.id !== id)
+      await queryClient.cancelQueries({ queryKey: ["todos"] });
+      const previousTodos = queryClient.getQueryData(["todos"]);
+      queryClient.setQueryData(["todos"], (old) =>
+        old.filter((todo) => todo.id !== id)
       );
       return { previousTodos };
     },
     onError: (err, id, context) => {
-      queryClient.setQueryData(['todos'], context.previousTodos);
+      queryClient.setQueryData(["todos"], context.previousTodos);
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['todos'] });
-    }
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
+    },
   });
 
   return { create, update, remove };
@@ -364,17 +371,17 @@ function useTodoMutations() {
 
 function TodoApp() {
   const { data: todos, isLoading } = useQuery({
-    queryKey: ['todos'],
-    queryFn: () => axios.get('/api/todos').then(res => res.data)
+    queryKey: ["todos"],
+    queryFn: () => axios.get("/api/todos").then((res) => res.data),
   });
 
   const { create, update, remove } = useTodoMutations();
-  const [newTodoTitle, setNewTodoTitle] = useState('');
+  const [newTodoTitle, setNewTodoTitle] = useState("");
 
   const handleCreateTodo = (e) => {
     e.preventDefault();
     create.mutate({ title: newTodoTitle, completed: false });
-    setNewTodoTitle('');
+    setNewTodoTitle("");
   };
 
   const handleToggleTodo = (todo) => {
@@ -396,16 +403,14 @@ function TodoApp() {
           disabled={create.isLoading}
         />
         <button type="submit" disabled={create.isLoading}>
-          {create.isLoading ? 'Adding...' : 'Add Todo'}
+          {create.isLoading ? "Adding..." : "Add Todo"}
         </button>
       </form>
 
-      {create.isError && (
-        <div>Error creating todo: {create.error.message}</div>
-      )}
+      {create.isError && <div>Error creating todo: {create.error.message}</div>}
 
       <ul>
-        {todos.map(todo => (
+        {todos.map((todo) => (
           <li key={todo.id}>
             <input
               type="checkbox"
@@ -413,7 +418,11 @@ function TodoApp() {
               onChange={() => handleToggleTodo(todo)}
               disabled={update.isLoading}
             />
-            <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+            <span
+              style={{
+                textDecoration: todo.completed ? "line-through" : "none",
+              }}
+            >
               {todo.title}
             </span>
             <button
@@ -431,9 +440,10 @@ function TodoApp() {
 ```
 
 <Callout type="info" title="You made it!">
-  This comprehensive guide covers everything you need to know about the `useMutation` hook in Tanstack Query, including its purpose, syntax, usage patterns, and best practices.
+  This comprehensive guide covers everything you need to know about the
+  `useMutation` hook in Tanstack Query, including its purpose, syntax, usage
+  patterns, and best practices.
 </Callout>
-
 
 ---
 

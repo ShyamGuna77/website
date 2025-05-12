@@ -2,10 +2,19 @@ import Callout from "../../components/Callout";
 import { ArticleLayout } from "../../components/ArticleLayout";
 
 export const article = {
-  author: 'Shyam Guna',
-  date: '2025-04-19',
-  title: 'Web Fonts: From Google to Self-Hosting Like a Pro',
-  description: 'A full guide on using custom fonts in modern web applications, from Google Fonts to self-hosted @font-face strategies.',
+  author: "Shyam Guna",
+  date: "2025-04-19",
+  title: "Web Fonts: From Google to Self-Hosting Like a Pro",
+  description:
+    "A full guide on using custom fonts in modern web applications, from Google Fonts to self-hosted @font-face strategies.",
+  tags: [
+    "Web Development",
+    "CSS",
+    "Performance",
+    "Frontend",
+    "Typography",
+    "Web Design",
+  ],
 };
 
 export const metadata = {
@@ -28,8 +37,11 @@ Google Fonts is an online repository of free, open-source web fonts. They have h
 Google Fonts works by providing a snippet that looks like this:
 
 ```html
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,400;1,600&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 Drop this in the `<head>` of your HTML file.
@@ -38,12 +50,13 @@ Then use it in your CSS:
 
 ```css
 .thing {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 ```
 
 <Callout type="tip" title="Quotes for font names">
-  Web fonts should be wrapped in quotes ('Open Sans', not Open Sans). It isn't strictly required for single-word fonts, but it's good practice.
+  Web fonts should be wrapped in quotes ('Open Sans', not Open Sans). It isn't
+  strictly required for single-word fonts, but it's good practice.
 </Callout>
 
 ## No HTML file?
@@ -53,18 +66,22 @@ If you use a framework like Next.js, you may not have a traditional `index.html`
 Frameworks generate this file automatically, but they provide escape hatches. In Next.js, you can use the `<Head />` component:
 
 ```jsx
-import Head from 'next/head';
+import Head from "next/head";
 
 <Head>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
-</Head>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+    rel="stylesheet"
+  />
+</Head>;
 ```
 
 ## The Benefits and Downsides of Google Fonts
 
 <Callout type="info" title="Easy setup, but not perfect">
-  Google Fonts is convenient, but not always the best for performance or variety.
+  Google Fonts is convenient, but not always the best for performance or
+  variety.
 </Callout>
 
 - Lots of amazing fonts aren't on Google Fonts
@@ -83,7 +100,8 @@ The issue isn't Google's server speed — it's about the loading process:
 Because fonts.googleapis.com and fonts.gstatic.com are **external domains**, additional handshakes (like HTTPS) introduce overhead.
 
 <Callout type="warning" title="Blocking requests hurt performance">
-  The font CSS request is **blocking** — the browser waits before rendering the page.
+  The font CSS request is **blocking** — the browser waits before rendering the
+  page.
 </Callout>
 
 Self-hosting lets you skip Step 2 and 3 entirely, resulting in better performance.
@@ -101,29 +119,30 @@ npm install @fontsource/open-sans
 Then import it directly:
 
 ```js
-import '@fontsource/open-sans';
+import "@fontsource/open-sans";
 ```
 
 <Callout type="info" title="Fontsource FTW">
-  Fontsource supports all Google Fonts and other open-source fonts, ideal for modern JS frameworks.
+  Fontsource supports all Google Fonts and other open-source fonts, ideal for
+  modern JS frameworks.
 </Callout>
 
 Angular 11+ also supports Google Fonts with built-in configuration to inline fonts directly.
 
 ## The Manual Way
 
-If the font isn’t on Google Fonts or Fontsource, self-host manually.
+If the font isn't on Google Fonts or Fontsource, self-host manually.
 
 ### Converting formats
 
-Most system fonts are `.otf` or `.ttf` — large and not optimized for web. Convert them to `.woff2` using [Font Squirrel’s Webfont Generator](https://www.fontsquirrel.com/tools/webfont-generator).
+Most system fonts are `.otf` or `.ttf` — large and not optimized for web. Convert them to `.woff2` using [Font Squirrel's Webfont Generator](https://www.fontsquirrel.com/tools/webfont-generator).
 
 ### Using `@font-face`
 
 ```css
 @font-face {
-  font-family: 'Wotfard';
-  src: url('/fonts/wotfard-regular.woff2') format('woff2');
+  font-family: "Wotfard";
+  src: url("/fonts/wotfard-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
@@ -133,22 +152,22 @@ Repeat for each weight and style:
 
 ```css
 @font-face {
-  font-family: 'Wotfard';
-  src: url('/fonts/wotfard-medium.woff2') format('woff2');
+  font-family: "Wotfard";
+  src: url("/fonts/wotfard-medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Wotfard';
-  src: url('/fonts/wotfard-bold.woff2') format('woff2');
+  font-family: "Wotfard";
+  src: url("/fonts/wotfard-bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Wotfard';
-  src: url('/fonts/wotfard-regular-italic.woff2') format('woff2');
+  font-family: "Wotfard";
+  src: url("/fonts/wotfard-regular-italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
 }
@@ -158,14 +177,13 @@ Each variation (italic, weight) requires its own declaration.
 
 ### IE Support
 
-Modern browsers all support `.woff2`. IE doesn’t.
+Modern browsers all support `.woff2`. IE doesn't.
 
 ```css
 @font-face {
-  font-family: 'Wotfard';
-  src: 
-    url('/fonts/wotfard-regular-italic.woff2') format('woff2'),
-    url('/fonts/wotfard-regular-italic.woff') format('woff');
+  font-family: "Wotfard";
+  src: url("/fonts/wotfard-regular-italic.woff2") format("woff2"), url("/fonts/wotfard-regular-italic.woff")
+      format("woff");
   font-weight: 400;
   font-style: normal;
 }
@@ -180,8 +198,8 @@ Add `@font-face` declarations inside `<style>` in your `index.html` or in your m
 ```html
 <style>
   @font-face {
-    font-family: 'Wotfard';
-    src: url('/fonts/wotfard-regular.woff2') format('woff2');
+    font-family: "Wotfard";
+    src: url("/fonts/wotfard-regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
   }
@@ -192,7 +210,7 @@ Use like this:
 
 ```css
 .something {
-  font-family: 'Wotfard';
+  font-family: "Wotfard";
   font-weight: 400;
 }
 ```
@@ -212,7 +230,8 @@ Without the real bold or italic font, browsers will **simulate** styles. These l
 Same goes for italic: browsers slant the font instead of using alternate characters.
 
 <Callout type="warning" title="Use real styles">
-  Always provide actual bold/italic font files. Faux styles reduce visual quality.
+  Always provide actual bold/italic font files. Faux styles reduce visual
+  quality.
 </Callout>
 
 ## Number Rounding
@@ -238,8 +257,12 @@ In the past, this would result in faux-bold. But modern browsers round to the cl
 <table>
   <thead>
     <tr>
-      <th>Using <code>font-weight: bold</code></th>
-      <th>Using <code>font-weight: 700</code></th>
+      <th>
+        Using <code>font-weight: bold</code>
+      </th>
+      <th>
+        Using <code>font-weight: 700</code>
+      </th>
     </tr>
   </thead>
   <tbody>

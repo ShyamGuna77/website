@@ -3,10 +3,19 @@ import { ArticleLayout } from "../../components/ArticleLayout";
 import demo from "./demo.png";
 
 export const article = {
-  author: 'Shyam Guna',
-  date: '2025-03-19',
-  title: 'The Journey of a Request to the Backend',
-  description: 'From the frontend through the kernel to the backend process — understanding the complete lifecycle of a backend request.',
+  author: "Shyam Guna",
+  date: "2025-03-19",
+  title: "The Journey of a Request to the Backend",
+  description:
+    "From the frontend through the kernel to the backend process — understanding the complete lifecycle of a backend request.",
+  tags: [
+    "Backend",
+    "System Design",
+    "Web Development",
+    "Networking",
+    "Performance",
+    "Architecture",
+  ],
 };
 
 export const metadata = {
@@ -16,13 +25,11 @@ export const metadata = {
 
 export default (props) => <ArticleLayout article={article} {...props} />;
 
-
-
 From the frontend through the kernel to the backend process, a request goes through a fascinating and complex lifecycle before it is actually processed.
 
-<img src={demo.src} alt="Request Flow Diagram"  />
+<img src={demo.src} alt="Request Flow Diagram" />
 
-Knowing each step helps backend developers architect systems that are robust and performant. Let’s explore the 6 key stages a request undergoes before processing.
+Knowing each step helps backend developers architect systems that are robust and performant. Let's explore the 6 key stages a request undergoes before processing.
 
 ---
 
@@ -31,7 +38,8 @@ Knowing each step helps backend developers architect systems that are robust and
 Connections arrive on ports like 443 using TCP or QUIC. The OS kernel completes the handshake and adds the connection to an **accept queue**. The backend app must call the `accept()` syscall to obtain a file descriptor.
 
 <Callout type="warning" title="Potential bottleneck">
-  If your backend is slow to accept connections, the queue fills up and causes connection failures.
+  If your backend is slow to accept connections, the queue fills up and causes
+  connection failures.
 </Callout>
 
 To improve this, you can:
@@ -53,7 +61,8 @@ Once accepted, data is sent as raw bytes over the connection. These bytes:
 The OS kernel buffers packets in a **receive queue** until the backend app reads them using `read()` or `recv()` syscalls. These syscalls transfer data to **user-space memory**.
 
 <Callout type="info" title="No full request yet">
-  At this stage, the backend only sees encrypted raw bytes — it might be part of one request or several.
+  At this stage, the backend only sees encrypted raw bytes — it might be part of
+  one request or several.
 </Callout>
 
 ---
@@ -76,7 +85,8 @@ With plaintext available, the backend parses it using the agreed protocol.
 - **HTTP/2 or HTTP/3** require decoding binary frames
 
 <Callout type="info" title="Parsing costs CPU">
-  Parsing overhead increases with protocols like HTTP/2 and HTTP/3 due to their complexity.
+  Parsing overhead increases with protocols like HTTP/2 and HTTP/3 due to their
+  complexity.
 </Callout>
 
 ---
@@ -110,7 +120,7 @@ Finally, the request is understood and ready to be processed. This may involve:
 - Sending responses
 
 <Callout type="info" title="Use worker pools">
-  It’s recommended to offload processing to worker threads or a thread pool.
+  It's recommended to offload processing to worker threads or a thread pool.
 </Callout>
 
 ---
@@ -129,7 +139,8 @@ Each backend request undergoes six steps:
 Understanding this journey enables backend developers to design systems where no single step becomes a bottleneck. Some systems use one thread for everything, others assign a thread per stage — the choice depends on performance goals and use cases.
 
 <Callout type="tip" title="Design for flexibility">
-  You can merge or split responsibilities between threads depending on load, architecture, and performance.
+  You can merge or split responsibilities between threads depending on load,
+  architecture, and performance.
 </Callout>
 
 ---

@@ -1,6 +1,6 @@
 import Callout from "../../components/Callout";
 import { ArticleLayout } from "../../components/ArticleLayout";
-import useEffect from "./UseEffect.png"
+import useEffect from "./UseEffect.png";
 
 export const article = {
   author: "Shyam Guna",
@@ -8,6 +8,14 @@ export const article = {
   title: "Why does React 18 double render useEffect in development?",
   description:
     "An in-depth explanation of React 18's StrictMode behavior with useEffect and how to understand the development-time double rendering.",
+  tags: [
+    "React",
+    "JavaScript",
+    "Web Development",
+    "Frontend",
+    "React Hooks",
+    "Performance",
+  ],
 };
 
 export const metadata = {
@@ -33,7 +41,7 @@ Repeat after me:
 
 ---
 
-<Image src = {useEffect} alt = "useEffect" />
+<Image src={useEffect} alt="useEffect" />
 
 ## React 18 double rendering with empty dependency array
 
@@ -52,10 +60,10 @@ export default function App() {
 }
 ```
 
-You’ll see this output twice in development. Why? Because React simulates a mount/unmount/remount cycle.
+You'll see this output twice in development. Why? Because React simulates a mount/unmount/remount cycle.
 
 <Callout type="tip" title="React is stress-testing your component">
-  This helps ensure your component doesn’t break when mounted and unmounted
+  This helps ensure your component doesn't break when mounted and unmounted
   quickly, like in route transitions.
 </Callout>
 
@@ -63,7 +71,7 @@ You’ll see this output twice in development. Why? Because React simulates a mo
 
 ## Want to turn it off?
 
-You technically can — but you shouldn’t.
+You technically can — but you shouldn't.
 
 ```js
 import { StrictMode } from "react";
@@ -87,17 +95,21 @@ root.render(
 
 ## How to fetch data correctly in React 18
 
-Fetching data in `useEffect` without a framework or a cache? You might see double requests. Here’s what Dan Abramov recommends:
+Fetching data in `useEffect` without a framework or a cache? You might see double requests. Here's what Dan Abramov recommends:
 
 <Callout type="info" title="Use framework-level data fetching">
-  If you're using a framework (like Next.js or Remix) , leverage their data
+  If you're using a framework (like Next.js or Remix), leverage their data
   loading mechanisms. They decouple rendering from fetching.
 </Callout>
 
-If you’re not using a framework:
+If you're not using a framework:
 
-- Use a client caching library (e.g., React Query, Apollo)
-- Avoid raw `useEffect` data fetching if possible
+<div>
+  <ul>
+    <li>Use a client caching library (e.g., React Query, Apollo)</li>
+    <li>Avoid raw `useEffect` data fetching if possible</li>
+  </ul>
+</div>
 
 ```js
 useEffect(() => {
@@ -112,7 +124,7 @@ useEffect(() => {
 ```
 
 <Callout type="warning" title="Double fetch is harmless if you cache">
-  With client caching, re-fetching doesn’t result in broken behavior or wasted
+  With client caching, re-fetching doesn't result in broken behavior or wasted
   performance.
 </Callout>
 
@@ -126,7 +138,7 @@ useEffect(() => {
 - Use the right tool for data fetching (framework or cache)
 
 <Callout type="tip" title="React is a library, not a framework">
-  You’re responsible for picking the right tools around React. React Query or
+  You're responsible for picking the right tools around React. React Query or
   RTK Query are great for data fetching.
 </Callout>
 
