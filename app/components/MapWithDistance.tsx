@@ -8,10 +8,10 @@ import { motion } from "framer-motion";
 const GlobeComponentWithNoSSR = dynamic(() => import("./GlobeComponent"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[400px] flex items-center justify-center bg-white dark:bg-zinc-900 rounded-full">
+    <div className="w-full h-[400px] flex items-center justify-center rounded-full">
       <div className="flex flex-col items-center">
-        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-        <p className="mt-4 text-gray-600 dark:text-gray-300">
+        <div className="w-12 h-12 border-4  border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <p className="mt-4 text-gray-600 text-center dark:text-gray-300">
           Loading globe...
         </p>
       </div>
@@ -38,15 +38,15 @@ const MapWithDistance = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="w-full mx-auto bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden border-2 border-blue-100 dark:border-blue-900"
+      className="w-full mx-auto overflow-hidden"
     >
       {isClient && isGlobeReady ? (
         <GlobeComponentWithNoSSR />
       ) : (
-        <div className="w-full h-[400px] flex items-center justify-center bg-white dark:bg-zinc-900 rounded-full">
+        <div className="w-full h-[400px] flex items-center justify-center">
           <div className="flex flex-col items-center justify-center space-y-4">
             <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-gray-600 dark:text-gray-300 font-medium">
+            <p className="text-gray-600 text-center dark:text-gray-300 font-medium">
               Loading globe...
             </p>
           </div>

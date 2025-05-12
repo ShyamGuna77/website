@@ -24,9 +24,8 @@ export default function Home() {
               color="#0096FF"
               animationDelay={2000}
               animationDuration={4000}
-              padding={1}
               show={true}
-              strokeWidth={4}
+              strokeWidth={3}
               iterations={6}
             >
               <span>Frontend</span>
@@ -135,7 +134,7 @@ export default function Home() {
               </Reveal>
 
               <Reveal>
-                <div className="w-full overflow-hidden mb-6 sm:mb-16 rounded-2xl shadow-lg mt-4 sm:mt-8">
+                <div className="w-full overflow-hidden mb-6 sm:mb-16 mt-4 sm:mt-8">
                   <div className="scale-[0.85] sm:scale-100 origin-center mx-auto">
                     <MapWithDistance />
                   </div>
