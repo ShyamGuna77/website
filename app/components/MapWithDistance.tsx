@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 
-// Use dynamic import with ssr: false for the Globe component
+
 const GlobeComponentWithNoSSR = dynamic(() => import("./GlobeComponent"), {
   ssr: false,
   loading: () => (
@@ -29,7 +29,7 @@ const MapWithDistance = () => {
     // Add a small delay to ensure proper initialization
     const timer = setTimeout(() => {
       setIsGlobeReady(true);
-    }, 100);
+    }, 50);
     return () => clearTimeout(timer);
   }, []);
 
