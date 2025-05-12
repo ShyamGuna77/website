@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 
-
 const GlobeComponentWithNoSSR = dynamic(() => import("./GlobeComponent"), {
   ssr: false,
   loading: () => (

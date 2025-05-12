@@ -42,6 +42,7 @@ const GlobeComponent = () => {
     features: [],
   });
   const [hoverD, setHoverD] = useState<Country | null>(null);
+  const [distance, setDistance] = useState<number | null>(null);
 
   const markerSvg = `<svg viewBox="-4 0 36 36">
     <path fill="currentColor" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
@@ -63,6 +64,26 @@ const GlobeComponent = () => {
     lng: 79.74,
   };
 
+  // Function to calculate distance between two points using Haversine formula
+  const calculateDistance = (
+    lat1: number,
+    lon1: number,
+    lat2: number,
+    lon2: number
+  ) => {
+    const R = 6371; // Earth's radius in kilometers
+    const dLat = ((lat2 - lat1) * Math.PI) / 180;
+    const dLon = ((lon2 - lon1) * Math.PI) / 180;
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return Math.round(R * c);
+  };
+
   useEffect(() => {
     setMounted(true);
     // Get user's location
@@ -72,6 +93,15 @@ const GlobeComponent = () => {
           lat: pos.coords.latitude,
           lng: pos.coords.longitude,
         };
+
+        // Calculate distance
+        const dist = calculateDistance(
+          creatorLocation.lat,
+          creatorLocation.lng,
+          userLocation.lat,
+          userLocation.lng
+        );
+        setDistance(dist);
 
         // Set locations
         const newLocations = [
@@ -108,13 +138,21 @@ const GlobeComponent = () => {
       },
       (err) => {
         console.error("Geolocation error:", err);
-        
+
         const defaultLocation = {
           lat: 40.7128,
           lng: -74.006,
         };
 
-        
+        // Calculate distance with default location
+        const dist = calculateDistance(
+          creatorLocation.lat,
+          creatorLocation.lng,
+          defaultLocation.lat,
+          defaultLocation.lng
+        );
+        setDistance(dist);
+
         const newLocations = [
           {
             lat: creatorLocation.lat,
@@ -133,7 +171,6 @@ const GlobeComponent = () => {
         ];
         setLocations(newLocations);
 
-      
         const newArcs = [];
         for (let i = 0; i < 3; i++) {
           newArcs.push({
@@ -141,7 +178,7 @@ const GlobeComponent = () => {
             startLng: creatorLocation.lng,
             endLat: defaultLocation.lat,
             endLng: defaultLocation.lng,
-            color: "#3b82f6", // Blue color for arcs
+            color: "#3b82f6",
           });
         }
         setArcs(newArcs);
@@ -179,78 +216,100 @@ const GlobeComponent = () => {
   }
 
   return (
-    <div className="w-full h-[400px]">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="w-full h-full"
-      >
-        <Globe
-          ref={globeRef}
-          globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-          width={400}
-          height={400}
-          htmlElementsData={locations}
-          htmlLat="lat"
-          htmlLng="lng"
-          htmlAltitude={0.1}
-          htmlElement={(d) => {
-            const el = document.createElement("div");
-            el.innerHTML = markerSvg;
-            el.style.color = (d as Location).color;
-            el.style.width = `${(d as Location).size}px`;
-            el.style.transition = "opacity 250ms";
-            el.style.pointerEvents = "auto";
-            el.style.cursor = "pointer";
-            el.onclick = () => console.info(d);
-            return el;
-          }}
-          htmlElementVisibilityModifier={(el, isVisible) => {
-            el.style.opacity = isVisible ? "1" : "0";
-          }}
-          arcsData={arcs}
-          arcStartLat="startLat"
-          arcStartLng="startLng"
-          arcEndLat="endLat"
-          arcEndLng="endLng"
-          arcColor="color"
-          arcAltitude={0.4}
-          arcAltitudeAutoScale={0.5}
-          arcStroke={0.7}
-          arcCurveResolution={64}
-          arcCircularResolution={5}
-          arcsTransitionDuration={1000}
-          arcDashLength={0.2}
-          arcDashGap={0.1}
-          arcDashAnimateTime={2000}
-          polygonsData={countries.features.filter(
-            (d) => d.properties.ISO_A2 !== "AQ"
-          )}
-          polygonCapColor={() => "rgba(0,0,0,0)"}
-          polygonSideColor={() => "rgba(0,0,0,0)"}
-          polygonStrokeColor={() => "#FFD700"}
-          polygonLabel={(d: unknown): string => {
-            const country = d as Country;
-            return `
-              <div style="
-                background-color: rgba(0, 0, 0, 0.8);
-                color: white;
-                padding: 8px;
-                border-radius: 4px;
-                font-size: 12px;
-              ">
-                <div><b>${country.properties.ADMIN} (${
-              country.properties.ISO_A2
-            })</b></div>
-                <div>Population: ${country.properties.POP_EST.toLocaleString()}</div>
-              </div>
-            `;
-          }}
-          polygonsTransitionDuration={300}
-          backgroundColor="rgba(0,0,0,0)"
-        />
-      </motion.div>
+    <div className="w-full">
+      <div className="w-full h-[400px]">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="w-full h-full"
+        >
+          <Globe
+            ref={globeRef}
+            globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+            width={400}
+            height={400}
+            htmlElementsData={locations}
+            htmlLat="lat"
+            htmlLng="lng"
+            htmlAltitude={0.1}
+            htmlElement={(d) => {
+              const el = document.createElement("div");
+              el.innerHTML = markerSvg;
+              el.style.color = (d as Location).color;
+              el.style.width = `${(d as Location).size}px`;
+              el.style.transition = "opacity 250ms";
+              el.style.pointerEvents = "auto";
+              el.style.cursor = "pointer";
+              el.onclick = () => console.info(d);
+              return el;
+            }}
+            htmlElementVisibilityModifier={(el, isVisible) => {
+              el.style.opacity = isVisible ? "1" : "0";
+            }}
+            arcsData={arcs}
+            arcStartLat="startLat"
+            arcStartLng="startLng"
+            arcEndLat="endLat"
+            arcEndLng="endLng"
+            arcColor="color"
+            arcAltitude={0.4}
+            arcAltitudeAutoScale={0.5}
+            arcStroke={0.7}
+            arcCurveResolution={64}
+            arcCircularResolution={5}
+            arcsTransitionDuration={1000}
+            arcDashLength={0.2}
+            arcDashGap={0.1}
+            arcDashAnimateTime={2000}
+            polygonsData={countries.features.filter(
+              (d) => d.properties.ISO_A2 !== "AQ"
+            )}
+            polygonCapColor={() => "rgba(0,0,0,0)"}
+            polygonSideColor={() => "rgba(0,0,0,0)"}
+            polygonStrokeColor={() => "#FFD700"}
+            polygonLabel={(d: unknown): string => {
+              const country = d as Country;
+              return `
+                <div style="
+                  background-color: rgba(0, 0, 0, 0.8);
+                  color: white;
+                  padding: 8px;
+                  border-radius: 4px;
+                  font-size: 12px;
+                ">
+                  <div><b>${country.properties.ADMIN} (${
+                country.properties.ISO_A2
+              })</b></div>
+                  <div>Population: ${country.properties.POP_EST.toLocaleString()}</div>
+                </div>
+              `;
+            }}
+            polygonsTransitionDuration={300}
+            backgroundColor="rgba(0,0,0,0)"
+          />
+        </motion.div>
+      </div>
+      {distance !== null && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="text-center mt-4 text-gray-700 dark:text-gray-300"
+        >
+          <p className="text-gray-600 dark:text-zinc-400 text-md max-w-md mx-auto">
+            I&apos;m based in{" "}
+            <strong className="text-blue-500">Andhra, India</strong>,
+            approximately{" "}
+            <span className="font-medium text-blue-500">{distance} </span>
+             kilometers from your current location.
+            {distance > 5000 && " That's quite a journey!"}
+            {distance > 10000 &&
+              " We're almost on opposite sides of the globe!"}
+            {distance < 100 && " Wow, we're practically neighbors!"}
+          </p>
+        </motion.div>
+      )}
     </div>
   );
 };
