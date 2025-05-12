@@ -100,7 +100,7 @@ const GlobeComponent = () => {
             startLng: creatorLocation.lng,
             endLat: userLocation.lat,
             endLng: userLocation.lng,
-            color: "#3b82f6", // Blue color for arcs
+            color: "#F70000",
           });
         }
         setArcs(newArcs);
@@ -108,13 +108,13 @@ const GlobeComponent = () => {
       },
       (err) => {
         console.error("Geolocation error:", err);
-        // Use a default location if geolocation fails
+        
         const defaultLocation = {
           lat: 40.7128,
           lng: -74.006,
         };
 
-        // Set locations with default
+        
         const newLocations = [
           {
             lat: creatorLocation.lat,
@@ -133,7 +133,7 @@ const GlobeComponent = () => {
         ];
         setLocations(newLocations);
 
-        // Create multiple arcs for default location
+      
         const newArcs = [];
         for (let i = 0; i < 3; i++) {
           newArcs.push({
@@ -215,14 +215,14 @@ const GlobeComponent = () => {
           arcEndLat="endLat"
           arcEndLng="endLng"
           arcColor="color"
-          arcAltitude={0.3}
+          arcAltitude={0.4}
           arcAltitudeAutoScale={0.5}
-          arcStroke={0.4}
+          arcStroke={0.7}
           arcCurveResolution={64}
-          arcCircularResolution={6}
+          arcCircularResolution={5}
           arcsTransitionDuration={1000}
           arcDashLength={0.2}
-          arcDashGap={0.4}
+          arcDashGap={0.1}
           arcDashAnimateTime={2000}
           polygonsData={countries.features.filter(
             (d) => d.properties.ISO_A2 !== "AQ"
