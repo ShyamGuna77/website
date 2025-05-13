@@ -6,6 +6,7 @@ export const CATEGORIES = [
   "Backend",
   "Animation",
   "General",
+  "System Design",
 ] as const;
 
 export type Category = (typeof CATEGORIES)[number];
