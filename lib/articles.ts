@@ -28,8 +28,6 @@ export interface ArticleWithSlug extends Article {
 async function importArticle(
   articleFilename: string
 ): Promise<ArticleWithSlug> {
-  // Use dynamic import with string concatenation
-  // app/lib/articles.ts
   const { article } = await import(`@/app/articles/${articleFilename}`);
 
   return {

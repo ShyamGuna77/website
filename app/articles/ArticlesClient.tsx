@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "../components/Card";
 import { SimpleLayout } from "../components/SimpleLayout";
 import { formatDate } from "@/lib/formatDate";
@@ -68,7 +69,7 @@ function Article({ article }: { article: ArticleWithSlug }) {
 export default function ArticlesClient({
   initialArticles,
 }: ArticlesClientProps) {
-  const [articles] = useState(initialArticles);
+  const [articles, setArticles] = useState(initialArticles);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null
