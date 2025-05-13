@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Card } from "../components/Card";
 import { SimpleLayout } from "../components/SimpleLayout";
 import { formatDate } from "@/lib/formatDate";
-import { categories } from "../lib/articles";
+import { CATEGORIES } from "../lib/articles";
 import type { ArticleWithSlug, Category } from "../lib/articles";
 import Reveal from "../utils/Reveal";
 import { FaSearch } from "react-icons/fa";
@@ -37,7 +37,7 @@ function Article({ article }: { article: ArticleWithSlug }) {
         </Reveal>
         <Reveal>
           <div className="flex flex-wrap gap-2 mt-4">
-            {(article.tags || []).map((tag) => (
+            {article.tags.map((tag) => (
               <span
                 key={tag}
                 className="px-2 py-1 text-sm bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900 dark:text-blue-200"
@@ -79,13 +79,12 @@ export default function ArticlesClient({
       searchQuery === "" ||
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       article.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (article.tags || []).some((tag) =>
+      article.tags.some((tag) =>
         tag.toLowerCase().includes(searchQuery.toLowerCase())
       );
 
     const matchesCategory =
-      selectedCategory === null ||
-      (article.tags || []).includes(selectedCategory);
+      selectedCategory === null || article.tags.includes(selectedCategory);
 
     return matchesSearch && matchesCategory;
   });
@@ -113,7 +112,7 @@ export default function ArticlesClient({
               Browse by Category
             </h3>
             <div className="flex flex-wrap gap-2">
-              {categories.map((category: Category) => (
+              {CATEGORIES.map((category) => (
                 <button
                   key={category}
                   onClick={() =>
