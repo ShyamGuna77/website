@@ -1,4 +1,4 @@
-import { getAllArticles } from "@/lib/articles";
+import { getAllArticles } from "../lib/server/articles";
 import ArticlesClient from "./ArticlesClient";
 
 export const dynamic = "force-dynamic";

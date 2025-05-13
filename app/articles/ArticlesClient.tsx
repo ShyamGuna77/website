@@ -5,8 +5,8 @@ import React, { useState, useEffect } from "react";
 import { Card } from "../components/Card";
 import { SimpleLayout } from "../components/SimpleLayout";
 import { formatDate } from "@/lib/formatDate";
-import { CATEGORIES } from "../lib/articles";
-import type { ArticleWithSlug, Category } from "../lib/articles";
+import { CATEGORIES } from "../lib/types";
+import type { ArticleWithSlug, Category } from "../lib/types";
 import Reveal from "../utils/Reveal";
 import { FaSearch } from "react-icons/fa";
 
