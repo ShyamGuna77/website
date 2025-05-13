@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import { Card } from "../components/Card";
 import { SimpleLayout } from "../components/SimpleLayout";
 import { formatDate } from "@/lib/formatDate";
-import { type ArticleWithSlug } from "@/lib/articles";
+import { categories } from "../lib/articles";
+import type { ArticleWithSlug, Category } from "../lib/articles";
 import Reveal from "../utils/Reveal";
 import { FaSearch } from "react-icons/fa";
 
 interface ArticlesClientProps {
   initialArticles: ArticleWithSlug[];
-  initialTags: string[];
 }
 
 function Article({ article }: { article: ArticleWithSlug }) {
@@ -67,12 +67,12 @@ function Article({ article }: { article: ArticleWithSlug }) {
 
 export default function ArticlesClient({
   initialArticles,
-  initialTags,
 }: ArticlesClientProps) {
   const [articles] = useState(initialArticles);
-  const [tags] = useState(initialTags);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null
+  );
 
   const filteredArticles = articles.filter((article) => {
     const matchesSearch =
@@ -83,13 +83,11 @@ export default function ArticlesClient({
         tag.toLowerCase().includes(searchQuery.toLowerCase())
       );
 
-    const matchesTag =
-      selectedTag === null ||
-      (article.tags || []).some(
-        (tag) => tag.toLowerCase() === selectedTag.toLowerCase()
-      );
+    const matchesCategory =
+      selectedCategory === null ||
+      (article.tags || []).includes(selectedCategory);
 
-    return matchesSearch && matchesTag;
+    return matchesSearch && matchesCategory;
   });
 
   return (
@@ -110,20 +108,29 @@ export default function ArticlesClient({
             <FaSearch className="absolute left-3 top-3 text-gray-400" />
           </div>
 
-          <div className="flex flex-wrap gap-2 mt-4">
-            {tags.map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
-                className={`px-3 py-1 text-sm rounded-full transition-colors ${
-                  selectedTag === tag
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-zinc-800 dark:text-gray-300 dark:hover:bg-zinc-700"
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
+          <div className="mt-6">
+            <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
+              Browse by Category
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category: Category) => (
+                <button
+                  key={category}
+                  onClick={() =>
+                    setSelectedCategory(
+                      selectedCategory === category ? null : category
+                    )
+                  }
+                  className={`px-3 py-1 text-sm rounded-full transition-colors ${
+                    selectedCategory === category
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-zinc-800 dark:text-gray-300 dark:hover:bg-zinc-700"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

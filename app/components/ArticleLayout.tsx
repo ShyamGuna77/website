@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prefer-const */
 
 "use client";
@@ -10,6 +11,10 @@ import { type ArticleWithSlug } from "@/lib/articles";
 import { formatDate } from "@/lib/formatDate";
 import clsx from "clsx";
 import { FaArrowLeft } from "react-icons/fa6";
+import { TableOfContents } from "./TableOfContents";
+import { useHeadings } from "../utils/useHeadings";
+import { useScrollSpy } from "../utils/useScrollSpy";
+import { useRef } from "react";
 
 function Prose({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
   return (
@@ -26,11 +31,17 @@ export function ArticleLayout({
 }) {
   let router = useRouter();
   let { previousPathname } = useContext(AppContext);
+  const articleRef = useRef<HTMLDivElement>(null);
+  const headings = useHeadings(articleRef);
+  const activeId = useScrollSpy(
+    headings.map(({ id }) => id),
+    { rootMargin: "0% 0% -80% 0%" }
+  );
 
   return (
     <Container className="mt-16 lg:mt-32">
       <div className="xl:relative">
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-6xl">
           {previousPathname && (
             <button
               type="button"
@@ -41,23 +52,41 @@ export function ArticleLayout({
               <FaArrowLeft className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
             </button>
           )}
-          <article>
-            <header className="flex flex-col">
-              <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-                {article.title}
-              </h1>
-              <time
-                dateTime={article.date}
-                className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
-              >
-                <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
-                <span className="ml-3">{formatDate(article.date)}</span>
-              </time>
-            </header>
-            <Prose className="mt-8" data-mdx-content>
-              {children}
-            </Prose>
-          </article>
+          <div className="relative lg:grid lg:grid-cols-[1fr_16rem] lg:gap-x-16">
+            <article className="prose prose-zinc dark:prose-invert max-w-none lg:max-w-3xl">
+              <header className="mb-8">
+                <h1 className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
+                  {article.title}
+                </h1>
+                <div className="flex items-center gap-4 mt-4">
+                  <time
+                    dateTime={article.date}
+                    className="text-sm text-zinc-500 dark:text-zinc-400"
+                  >
+                    {formatDate(article.date)}
+                  </time>
+                  <div className="flex flex-wrap gap-2">
+                    {(article.tags || []).map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 text-sm bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900 dark:text-blue-200"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </header>
+              <div ref={articleRef} className="mt-8" data-mdx-content>
+                {children}
+              </div>
+            </article>
+            <div className="hidden lg:block pl-8 border-l border-zinc-200 dark:border-zinc-800">
+              <div className="sticky top-24">
+                <TableOfContents headings={headings} activeId={activeId} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Container>
