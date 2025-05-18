@@ -73,7 +73,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
   useRopeJoint(j2 as any, j3 as any, [[0, 0, 0], [0, 0, 0], 1]);
   useSphericalJoint(j3 as any, card as any, [
     [0, 0, 0],
-    [0, 1.45, 0],
+    [0, 2.8, 0],
   ]);
 
   useEffect(() => {
@@ -137,7 +137,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
 
   return (
     <>
-      <group position={[0, 4, 0]}>
+      <group position={[0, 4.8, 0]}>
         {/* @ts-expect-error  ref is not defined*/}
         <RigidBody ref={fixed} type="fixed" />
         {/* @ts-expect-error  ref is not defined*/}
@@ -180,7 +180,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
           <CuboidCollider args={[1.2, 1.7, 0.01]} />
           <group rotation={[0, flipped ? Math.PI : 0, 0]}>
             <mesh position={[0, 0, 0.01]}>
-              <planeGeometry args={[2.4, 3.4]} />
+              <planeGeometry args={[3.2, 4.5]} />
               <meshStandardMaterial
                 map={frontTexture}
                 map-anisotropy={16}
@@ -189,7 +189,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
               />
             </mesh>
             <mesh position={[0, 0, -0.01]}>
-              <planeGeometry args={[2.4, 3.4]} />
+              <planeGeometry args={[3.2, 4.5]} />
               <meshStandardMaterial
                 map={backTexture}
                 map-anisotropy={16}
@@ -197,13 +197,16 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
                 side={THREE.BackSide}
               />
             </mesh>
+            {/* Subtle border */}
             <mesh>
-              <boxGeometry args={[2.5, 3.5, 0.02]} />
+              <planeGeometry args={[3.3, 4.6]} />
               <meshStandardMaterial
                 color="#0096FF"
-                roughness={0.5}
+                roughness={0.3}
+                metalness={0.5}
                 transparent
-                opacity={0.2}
+                opacity={0.8}
+                side={THREE.DoubleSide}
               />
             </mesh>
           </group>
@@ -220,7 +223,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
           useMap
           map={texture}
           repeat={[-3, 1]}
-          lineWidth={2}
+          lineWidth={2.4}
           transparent
           opacity={0.5}
         />
