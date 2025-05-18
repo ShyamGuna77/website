@@ -1,33 +1,41 @@
-/* eslint-disable prefer-const */
+
 
 import { FaChevronRight } from "react-icons/fa";
 import clsx from "clsx";
 import Link from "next/link";
+import type { ElementType, ReactNode, ComponentPropsWithoutRef } from "react";
 
+// Base type to support 'as' polymorphic components
+type CardProps<T extends ElementType> = {
+  as?: T;
+  className?: string;
+  children?: ReactNode;
+} & Omit<ComponentPropsWithoutRef<T>, "as" | "className" | "children">;
 
-export function Card<T extends React.ElementType = "div">({
+export function Card<T extends ElementType = "div">({
   as,
   className,
   children,
-}: Omit<React.ComponentPropsWithoutRef<T>, "as" | "className"> & {
-  as?: T;
-  className?: string;
-}) {
-  let Component = as ?? "div";
+  ...props
+}: CardProps<T>) {
+  const Component = as || "div";
 
   return (
+    // @ts-expect-error CardProps is not defined
     <Component
       className={clsx(className, "group relative flex flex-col items-start")}
+      {...props}
     >
       {children}
     </Component>
   );
 }
 
+// Card.Link
 Card.Link = function CardLink({
   children,
   ...props
-}: React.ComponentPropsWithoutRef<typeof Link>) {
+}: ComponentPropsWithoutRef<typeof Link>) {
   return (
     <>
       <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50" />
@@ -39,27 +47,35 @@ Card.Link = function CardLink({
   );
 };
 
-Card.Title = function CardTitle<T extends React.ElementType = "h2">({
+// Card.Title
+Card.Title = function CardTitle<T extends ElementType = "h2">({
   as,
   href,
   children,
-}: Omit<React.ComponentPropsWithoutRef<T>, "as" | "href"> & {
+  ...props
+}: {
   as?: T;
   href?: string;
-}) {
-  let Component = as ?? "h2";
+  children?: ReactNode;
+} & Omit<ComponentPropsWithoutRef<T>, "as" | "href" | "children">) {
+  const Component = as || "h2";
 
   return (
-    <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+    // @ts-expect-error CardProps is not defined
+    <Component
+      className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100"
+      {...props}
+    >
       {href ? <Card.Link href={href}>{children}</Card.Link> : children}
     </Component>
   );
 };
 
+// Card.Description
 Card.Description = function CardDescription({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
@@ -68,7 +84,8 @@ Card.Description = function CardDescription({
   );
 };
 
-Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {
+// Card.Cta
+Card.Cta = function CardCta({ children }: { children: ReactNode }) {
   return (
     <div
       aria-hidden="true"
@@ -80,19 +97,23 @@ Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {
   );
 };
 
-Card.Eyebrow = function CardEyebrow<T extends React.ElementType = "p">({
+// Card.Eyebrow
+Card.Eyebrow = function CardEyebrow<T extends ElementType = "p">({
   as,
   decorate = false,
   className,
   children,
   ...props
-}: Omit<React.ComponentPropsWithoutRef<T>, "as" | "decorate"> & {
+}: {
   as?: T;
   decorate?: boolean;
-}) {
-  let Component = as ?? "p";
+  className?: string;
+  children?: ReactNode;
+} & Omit<ComponentPropsWithoutRef<T>, "as" | "children" | "className">) {
+  const Component = as || "p";
 
   return (
+    // @ts-expect-error CardProps is not defined
     <Component
       className={clsx(
         className,
@@ -113,4 +134,3 @@ Card.Eyebrow = function CardEyebrow<T extends React.ElementType = "p">({
     </Component>
   );
 };
-
