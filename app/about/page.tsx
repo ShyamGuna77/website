@@ -3,21 +3,19 @@
 
 "use client";
 // import {type Metadata } from "next"
-import Image from "next/image";
-
 import Reveal from "../utils/Reveal";
 import { Container } from "../components/Container";
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
-import serious from "@/app/Images/moodoff.png";
 import { TextNotation } from "react-text-decorator";
 import { SocialText } from "../components/SocialText";
+import IDCard3D from "../components/IDCard3D";
 
 // export const metadata: Metadata = {
 //   title: 'About',
 //   description:
-//     'I’m Shyam guna. Fullstack SDE based in India.'
+//     'I'm Shyam guna. Fullstack SDE based in India.'
 // }
 
 const About = () => {
@@ -30,19 +28,13 @@ const About = () => {
         >
           <div className="lg:pl-20">
             <div className="max-w-xs px-2.5 lg:max-w-none">
-              <Image
-                src={serious}
-                alt="A Anime based picture of mine "
-                sizes="(min-width:1024px) 32rem , 20rem"
-                className="aspect-square rotate-3 rounded-2xl bg-zimc-100
-            object-cover object-top dark:bg-zinc-800  dark:shadow-[0_10px_20px_rgba(59,130,246,0.5)] shadow-2xl shadow-blue-300"
-              />
+              <IDCard3D />
             </div>
           </div>
           <div className="lg:order-first lg:row-span-2">
             <Reveal>
               <h1 className="text-4xl font-bold tracking-tight">
-                Hey, I’m{" "}
+                Hey, I'm{" "}
                 <TextNotation
                   type="highlight"
                   color="#0096FF"
