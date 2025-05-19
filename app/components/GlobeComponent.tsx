@@ -43,7 +43,7 @@ const GlobeComponent = () => {
   });
   const [hoverD, setHoverD] = useState<Country | null>(null);
   const [distance, setDistance] = useState<number | null>(null);
-  const [isRotating, setIsRotating] = useState(true);
+  const [isRotating, setIsRotating] = useState(false);
   const [rotationSpeed, setRotationSpeed] = useState(1.5);
 
   const markerSvg = `<svg viewBox="-4 0 36 36">
@@ -88,7 +88,7 @@ const GlobeComponent = () => {
 
   useEffect(() => {
     setMounted(true);
-    // Get user's location
+
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const userLocation = {
@@ -124,7 +124,7 @@ const GlobeComponent = () => {
         ];
         setLocations(newLocations);
 
-        // Create multiple arcs for a more dynamic effect
+        // Create multiple arcs bHAI
         const newArcs = [];
         for (let i = 0; i < 3; i++) {
           newArcs.push({
