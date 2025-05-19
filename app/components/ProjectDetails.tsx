@@ -35,40 +35,42 @@ const projects: Project[] = [
     fullDescription: (
       <>
         <p>
-          <strong>Shinigami Design</strong> is a modern, anime-inspired SaaS
-          graphic editor built using Next.js, Tailwind CSS, Shadcn UI, and
-          powered by Bun for blazing-fast builds. It provides a seamless and
-          responsive user interface designed for both casual creators and
-          professional designers.
+          <strong>Shinigami Design</strong> is a next-gen, anime-inspired
+          graphic tool editor built with
+          <strong> Next.js, Hono, Tailwind CSS, Drizzle ORM</strong>.
+         It delivers a fluid, responsive
+          experience tailored for creators of all levels—from casual users to
+          pro designers.
         </p>
 
         <p>
-          The editor allows users to add and manipulate shapes, insert and style
-          text, and upload images directly onto a customizable canvas. It
-          includes a flexible template system where users can start with
-          pre-built layouts, making the design process faster and more
-          intuitive.
+          Users can start designing with ready-made templates or upload their
+          own. The editor supports AI-powered background removal, image
+          generation, and intuitive drawing tools. Customize editor dimensions,
+          apply filters, draw freely, or change colors—everything is accessible
+          through an immersive, canvas-first interface.
         </p>
 
         <p>
-          Once editing is complete, users can export their designs in various
-          formats such as PNG or JPG. The platform also includes a save feature,
-          enabling users to store their projects and return to them anytime for
-          further editing or revisions.
+          Seamless image uploading is powered by <strong>UploadThing</strong>,
+          making asset management fast and simple. You can add multiple images,
+          manipulate them, and apply filters with real-time preview. Templates
+          can be inserted, removed, or replaced with one click.
         </p>
 
         <p>
-          Shinigami Design features AI-powered tools available for Pro users,
-          including smart image enhancements, auto-layout suggestions, and style
-          filters that apply anime, retro, noir, and sketch aesthetics with a
-          single click.
+          Authentication is handled through <strong>NextAuth</strong>, offering
+          a secure and smooth sign-in flow. <strong>Stripe</strong> integration
+          powers premium features, unlocking exclusive tools such as AI
+          enhancements, HD exports, and aesthetic filters like anime, noir,
+          retro, and sketch styles.
         </p>
 
         <p>
-          Designed with a mobile-first approach, the app supports light and dark
-          themes, smooth animations, and an accessible layout. It's deployed on
-          Vercel, using static site generation for optimized performance and
-          faster load times.
+          Designed mobile-first, the platform supports light/dark themes, smooth
+          transitions, and an accessible layout. It's deployed on{" "}
+          <strong>Vercel</strong>, leveraging static site generation and edge
+          functions via Hono for lightning-fast performance.
         </p>
 
         <p>
@@ -77,9 +79,9 @@ const projects: Project[] = [
       </>
     ),
     imgSrc: Shinigami,
-    tech: ["Next.js", "React", "Tailwind CSS", "Bun", "Drizzle"],
-    github: "https://github.com/ShyamGuna77/SevenD",
-    live: "https://github.com/ShyamGuna77/SevenD",
+    tech: ["Next.js", "Fabric.js", "Tailwind CSS", "Hono", "Drizzle"],
+    github: "https://github.com/ShyamGuna77/ShiniGami-Designs",
+    live: "https://shini-gami-designs.vercel.app/",
   },
   {
     id: 2,
