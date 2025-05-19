@@ -73,7 +73,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
   useRopeJoint(j2 as any, j3 as any, [[0, 0, 0], [0, 0, 0], 1]);
   useSphericalJoint(j3 as any, card as any, [
     [0, 0, 0],
-    [0, 2.8, 0],
+    [0, 2.0, 0],
   ]);
 
   useEffect(() => {
@@ -223,7 +223,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
           useMap
           map={texture}
           repeat={[-3, 1]}
-          lineWidth={2.4}
+          lineWidth={2.8}
           transparent
           opacity={0.5}
         />
