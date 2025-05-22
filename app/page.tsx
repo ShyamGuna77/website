@@ -12,6 +12,20 @@ import MapWithDistance from "./components/MapWithDistance";
 import GithubGraph from "./components/GithubStats";
 import { TextNotation } from "react-text-decorator";
 import MusicPlayer from "./components/MusicPlayer";
+import { Suspense } from "react";
+
+// Loading components
+const GithubGraphSkeleton = () => (
+  <div className="w-full h-[200px] bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg" />
+);
+
+const MapSkeleton = () => (
+  <div className="w-full h-[400px] bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg" />
+);
+
+const MusicPlayerSkeleton = () => (
+  <div className="w-full h-[100px] bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg" />
+);
 
 export default function Home() {
   return (
@@ -89,9 +103,11 @@ export default function Home() {
               </h2>
               <Reveal>
                 <div className="px-1 sm:px-4">
-                  <div className="scale-[0.85] sm:scale-100 origin-top-left">
-                    <GithubGraph />
-                  </div>
+                  <Suspense fallback={<GithubGraphSkeleton />}>
+                    <div className="scale-[0.85] sm:scale-100 origin-top-left">
+                      <GithubGraph />
+                    </div>
+                  </Suspense>
                 </div>
               </Reveal>
             </div>
@@ -99,9 +115,11 @@ export default function Home() {
             {/* Music Player Section */}
             <div className="w-full mt-6 sm:mt-8">
               <Reveal>
-                <div className="scale-[0.85] sm:scale-100 origin-top-left">
-                  <MusicPlayer />
-                </div>
+                <Suspense fallback={<MusicPlayerSkeleton />}>
+                  <div className="scale-[0.85] sm:scale-100 origin-top-left">
+                    <MusicPlayer />
+                  </div>
+                </Suspense>
               </Reveal>
             </div>
           </div>
@@ -135,9 +153,11 @@ export default function Home() {
 
               <Reveal>
                 <div className="w-full overflow-hidden mb-4 sm:mb-8 mt-2 sm:mt-4">
-                  <div className="scale-[0.85] sm:scale-100 origin-center mx-auto">
-                    <MapWithDistance />
-                  </div>
+                  <Suspense fallback={<MapSkeleton />}>
+                    <div className="scale-[0.85] sm:scale-100 origin-center mx-auto">
+                      <MapWithDistance />
+                    </div>
+                  </Suspense>
                 </div>
               </Reveal>
             </div>

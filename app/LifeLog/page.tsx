@@ -2,6 +2,7 @@
 import { type Metadata } from "next";
 import { Container } from "../components/Container";
 import React from "react";
+import Reveal from "../utils/Reveal";
 
 export const metadata: Metadata = {
   title: "LifeLog",
@@ -63,6 +64,7 @@ const resources: Resource[] = [
 const LifeLog = () => {
   return (
     <Container>
+      <Reveal>
       <div className="flex flex-col items-center pt-6 sm:pt-10 px-4">
         <div className="space-y-4 sm:space-y-6">
           <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 dark:text-white">
@@ -93,6 +95,7 @@ const LifeLog = () => {
             </ul>
         </div>
       </div>
+      </Reveal>
     </Container>
   );
 };

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
 import { useTexture, Environment, Lightformer } from "@react-three/drei";
 import {
@@ -232,25 +232,32 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
   );
 }
 
+// Loading component
+const CardSkeleton = () => (
+  <div className="h-[600px] w-full bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg" />
+);
+
 export default function IDCard3D() {
   return (
-    <div className="h-[600px] w-full bg-[#FAFAFA] dark:bg-[#000000]">
-      <Canvas camera={{ position: [0, 0, 15], fov: 25 }}>
-        <ambientLight intensity={0.8} />
-        <Physics gravity={[0, -40, 0]} timeStep={1 / 60}>
-          <Band />
-        </Physics>
-        <Environment background={false}>
-          <color attach="background" args={["#FAFAFA"]} />
-          <Lightformer
-            intensity={0.1}
-            color="#FFFFFF"
-            position={[0, 5, 5]}
-            rotation={[0, 0, 0]}
-            scale={[5, 5, 1]}
-          />
-        </Environment>
-      </Canvas>
-    </div>
+    <Suspense fallback={<CardSkeleton />}>
+      <div className="h-[600px] w-full bg-[#FAFAFA] dark:bg-[#000000]">
+        <Canvas camera={{ position: [0, 0, 15], fov: 25 }}>
+          <ambientLight intensity={0.8} />
+          <Physics gravity={[0, -40, 0]} timeStep={1 / 60}>
+            <Band />
+          </Physics>
+          <Environment background={false}>
+            <color attach="background" args={["#FAFAFA"]} />
+            <Lightformer
+              intensity={0.1}
+              color="#FFFFFF"
+              position={[0, 5, 5]}
+              rotation={[0, 0, 0]}
+              scale={[5, 5, 1]}
+            />
+          </Environment>
+        </Canvas>
+      </div>
+    </Suspense>
   );
 }
