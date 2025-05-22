@@ -8,9 +8,9 @@ import ProjectModal from "./ProjectModal";
 // import LinkSaver from "@/app/Images/LinkSaver.png"
 import Shinigami from "@/app/Images/shinigami.png"
 import Kizuna from "@/app/Images/kizuna.png"
-import Cosketch from "@/app/Images/cosketch.png"
+// import Cosketch from "@/app/Images/cosketch.png"
 import Sonicronin from "@/app/Images/Sonicronin.png"
-
+import Docsy from "@/app/Images/Docsy.png"    
 
 
 type Project = {
@@ -37,10 +37,9 @@ const projects: Project[] = [
         <p>
           <strong>Shinigami Design</strong> is a next-gen, anime-inspired
           graphic tool editor built with
-          <strong> Next.js, Hono, Tailwind CSS, Drizzle ORM</strong>.
-         It delivers a fluid, responsive
-          experience tailored for creators of all levels—from casual users to
-          pro designers.
+          <strong> Next.js, Hono, Tailwind CSS, Drizzle ORM</strong>. It
+          delivers a fluid, responsive experience tailored for creators of all
+          levels—from casual users to pro designers.
         </p>
 
         <p>
@@ -85,54 +84,65 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: "CoSketch",
-    description: "A full-featured DrawBoard platform using Websockets.",
+    title: "Docsy",
+    description:
+      "An interactive real-time docs collaborator using Tiptap and Liveblocks.",
     fullDescription: (
       <>
         <p className="leading-relaxed">
-          This online whiteboard app is a real-time collaborative drawing tool
-          inspired by Excalidraw. It allows multiple users to sketch, draw, and
-          brainstorm together on a shared canvas using WebSockets for seamless
-          synchronization and instant updates.
+          <strong>Docsy</strong> is an interactive real-time document
+          collaboration platform where users can join organizations and
+          collaborate seamlessly on documents — just like Google Docs.
         </p>
 
         <p className="leading-relaxed">
           Built with{" "}
-          <strong className="font-semibold text-blue-600">Next.js</strong>,{" "}
-          <strong className="font-semibold text-blue-600">Tailwind CSS</strong>,
-          and the{" "}
-          <strong className="font-semibold text-blue-600">HTML5 Canvas</strong>{" "}
-          element, this platform offers all the essential features of
-          Excalidraw, such as freehand drawing, shapes, text, arrow connectors,
-          undo/redo, and zooming.
+          <strong className="font-semibold text-blue-600">Next.js 15</strong>,{" "}
+          <strong className="font-semibold text-blue-600">Tailwind CSS</strong>,{" "}
+          <strong className="font-semibold text-blue-600">shadcn/ui</strong>,
+          and <strong className="font-semibold text-blue-600">Tiptap</strong>{" "}
+          for a rich text editing experience.{" "}
+          <strong className="font-semibold text-blue-600">Clerk</strong> handles
+          authentication,{" "}
+          <strong className="font-semibold text-blue-600">Convex DB</strong>{" "}
+          powers the backend, and{" "}
+          <strong className="font-semibold text-blue-600">Liveblocks</strong>{" "}
+          enables real-time multiplayer collaboration.
         </p>
 
         <p className="leading-relaxed">
-          The app’s real-time collaboration capabilities enable multiple users
-          to join a session simultaneously and work on the same canvas without
-          lag, making it ideal for remote teams, classNamerooms, and creative
-          brainstorming. It’s fast, responsive, and easy to use, with a
-          minimalistic interface that focuses on the drawing experience.
+          Users can start from ready-made templates, change font styles, modify
+          margins, insert tables, upload images, align and format text, make
+          text bold/italic/underlined, and print documents directly from the
+          interface.
         </p>
 
         <p className="leading-relaxed">
-          Whether you're sketching a concept, planning a project, or
-          collaborating on designs, this tool allows you to bring ideas to life
-          with others, no matter where you are. Everything happens in real time,
-          ensuring that your ideas and changes are instantly visible to all
-          participants.
+          Docsy is ideal for teams, classrooms, and professional use-cases where
+          live editing and seamless sync across users is essential. With a
+          modern and minimalistic UI, it ensures smooth collaboration across
+          devices in real time.
         </p>
 
         <p className="text-xl font-semibold text-green-500 mt-6">
-          <em>Think. Draw. Collaborate — in real time.</em>
+          <em>Create. Edit. Collaborate — without limits.</em>
         </p>
       </>
     ),
-    imgSrc: Cosketch,
-    tech: ["Nextjs", "canvas", "prisma", "Tailwind", "webSocket"],
-    github: "https://github.com/ShyamGuna77",
-    live: "https://github.com/ShyamGuna77",
+    imgSrc: Docsy,
+    tech: [
+      "Next.js 15",
+      "Tiptap",
+      "Tailwind",
+      "shadcn",
+      "Convex DB",
+      "Liveblocks",
+      "Clerk",
+    ],
+    github: "https://github.com/ShyamGuna77/Docsy/",
+    live: "https://nextjs-docs-zeta-mauve.vercel.app/",
   },
+
   {
     id: 3,
     title: "Kizuna",
