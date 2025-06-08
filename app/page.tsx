@@ -9,10 +9,10 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import Reveal from "./utils/Reveal";
 import MapWithDistance from "./components/MapWithDistance";
-import GithubGraph from "./components/GithubStats";
 import { TextNotation } from "react-text-decorator";
 import MusicPlayer from "./components/MusicPlayer";
 import { Suspense } from "react";
+import Skills from "./components/Skills";
 
 // Loading components
 const GithubGraphSkeleton = () => (
@@ -98,14 +98,14 @@ export default function Home() {
                   strokeWidth={3}
                   iterations={6}
                 >
-                  Proof of Work
+                  Tech Stack
                 </TextNotation>
               </h2>
               <Reveal>
                 <div className="px-1 sm:px-4">
                   <Suspense fallback={<GithubGraphSkeleton />}>
-                    <div className="scale-[0.85] sm:scale-100 origin-top-left">
-                      <GithubGraph />
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <Skills />
                     </div>
                   </Suspense>
                 </div>

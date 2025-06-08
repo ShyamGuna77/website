@@ -64,38 +64,43 @@ const resources: Resource[] = [
 const LifeLog = () => {
   return (
     <Container>
-      <Reveal>
       <div className="flex flex-col items-center pt-6 sm:pt-10 px-4">
         <div className="space-y-4 sm:space-y-6">
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 dark:text-white">
-            My LifeLog
-          </h1>
+          <Reveal>
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 dark:text-white">
+              My LifeLog
+            </h1>
+          </Reveal>
+          <Reveal>
           <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mt-2 sm:mt-4">
             This is a collection of resources that helped me a lot. <br />
             I'll keep updating it as I find more useful stuff.
           </p>
+          </Reveal>
+          <Reveal>
           <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400">
             If something seems important to be included here, please let me
             know.
-          </p>
-
-            <ul className="mt-6 sm:mt-10 list-disc pl-5 text-left text-base sm:text-lg text-gray-800 dark:text-gray-200 space-y-2 sm:space-y-3">
+          </p>  
+          </Reveal>
+          <Reveal>
+          <ul className="mt-6 sm:mt-10 list-disc pl-5 text-left text-base sm:text-lg text-gray-800 dark:text-gray-200 space-y-2 sm:space-y-3">
             {resources.map((resource, index) => (
               <li key={index}>
-              <a
-                href={resource.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                {resource.title}
-              </a>
+                <a
+                  href={resource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  {resource.title}
+                </a>
               </li>
-            ))}
+              ))}
             </ul>
+          </Reveal>
         </div>
       </div>
-      </Reveal>
     </Container>
   );
 };

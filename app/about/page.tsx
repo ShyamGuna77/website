@@ -12,6 +12,7 @@ import { TextNotation } from "react-text-decorator";
 import { SocialText } from "../components/SocialText";
 import IDCard3D from "../components/IDCard3D";
 
+
 // export const metadata: Metadata = {
 //   title: 'About',
 //   description:
