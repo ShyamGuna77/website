@@ -23,7 +23,6 @@ import { FaAws } from "react-icons/fa";
 import { FaJava } from "react-icons/fa";
 import { GiPolarBear } from "react-icons/gi";
 
-
 const skills = [
   { name: "React", icon: SiReact, color: "#61DAFB" },
   { name: "Next.js", icon: SiNextdotjs, color: "white" },
@@ -50,18 +49,24 @@ const skills = [
 
 const Skills = () => {
   return (
-    <div className="relative w-[400px] overflow-hidden bg-white dark:bg-zinc-900 py-4">
+    <div className="relative w-[280px] sm:w-[340px] md:w-[400px] mx-auto overflow-hidden bg-white dark:bg-zinc-900 py-4 rounded-lg">
       <div className="flex animate-scroll">
         {[...skills, ...skills].map((skill, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center min-w-[80px] px-4"
+            className="flex flex-col items-center justify-center min-w-[70px] sm:min-w-[80px] px-2 sm:px-4"
           >
             <skill.icon
-              className="w-8 h-8 transition-transform hover:scale-110"
-              style={{ color: skill.color }}
+              className="w-6 h-6 sm:w-8 sm:h-8 transition-transform hover:scale-110"
+              style={{
+                color: skill.color,
+                filter:
+                  skill.color === "white"
+                    ? "drop-shadow(0 0 1px rgba(0,0,0,0.3))"
+                    : "none",
+              }}
             />
-            <span className="mt-2 text-xs text-zinc-600 dark:text-zinc-400">
+            <span className="mt-2 text-[10px] sm:text-xs text-zinc-600 dark:text-zinc-400">
               {skill.name}
             </span>
           </div>

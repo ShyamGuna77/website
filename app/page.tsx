@@ -104,7 +104,7 @@ export default function Home() {
               <Reveal>
                 <div className="px-1 sm:px-4">
                   <Suspense fallback={<GithubGraphSkeleton />}>
-                    <div className="w-full overflow-hidden rounded-lg">
+                    <div className="w-full flex justify-center">
                       <Skills />
                     </div>
                   </Suspense>
