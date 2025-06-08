@@ -28,10 +28,23 @@ const GithubGraph = () => {
             return filtered;
           }}
           theme={{
-            light: ["#ebedf0", "#c6e4ff", "#7dc4ff", "#2196f3", "#0d47a1"],
+            light: [
+              "#ebedf0", 
+              "#c6e4ff",
+              "#7dc4ff",
+              "#2196f3", 
+              "#0d47a1", 
+            ],
+            dark: [
+              "#161b22", 
+              "#0d47a1",
+              "#1565c0", 
+              "#1976d2",
+              "#2196f3", 
+            ],
           }}
           style={{
-            width: "100%",
+            width: "70%",
             height: "auto",
             maxWidth: "100%",
           }}

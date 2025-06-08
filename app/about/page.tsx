@@ -11,7 +11,7 @@ import { MdMail } from "react-icons/md";
 import { TextNotation } from "react-text-decorator";
 import { SocialText } from "../components/SocialText";
 import IDCard3D from "../components/IDCard3D";
-
+import GithubGraph from "../components/GithubStats";
 
 // export const metadata: Metadata = {
 //   title: 'About',
@@ -114,7 +114,12 @@ const About = () => {
                   turns ideas into real, usable products.
                 </p>
               </Reveal>
-
+              <Reveal>
+                <div className="mt-8 mb-8">
+                  <h2 className="text-2xl font-bold text-center mb-4 text-zinc-800 dark:text-zinc-200">Proof of Work</h2>
+                  <GithubGraph />
+                </div>
+              </Reveal>
               <Reveal>
                 <div className="flex justify-center items-center mt-3 space-x-4">
                   <img
