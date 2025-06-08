@@ -46,7 +46,7 @@ const About = () => {
                   animationDelay={4400}
                 >
                   {" "}
-                  Shyam Guna{" "}
+                  Shyam {" "}
                 </TextNotation>{" "}
                 — a Full Stack Developer from India with a passion for building
                 clean, creative, and scalable digital experiences.

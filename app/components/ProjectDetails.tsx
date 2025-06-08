@@ -259,8 +259,8 @@ const projects: Project[] = [
     ),
     imgSrc: Sonicronin,
     tech: ["Nextjs", "Websockets", "YoutubeApi", "Motion"],
-    github: "https://github.com/ShyamGuna77/SonicRonin",
-    live: "https://github.com/ShyamGuna77/SonicRonin",
+    github: "https://github.com/ShyamGuna77/",
+    live: "https://github.com/ShyamGuna77/",
   },
 ];
 

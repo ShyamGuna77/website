@@ -6,7 +6,7 @@ import Reveal from "../utils/Reveal";
 
 export const metadata: Metadata = {
   title: "LifeLog",
-  description: "These are the Collection Good Poductivity resources",
+  description: "These are the Collection of Good Poductivity resources",
 };
 
 type Resource = {
@@ -58,6 +58,14 @@ const resources: Resource[] = [
   {
     title: "HardWork  --Might Guy",
     url: "https://www.youtube.com/watch?v=vKYTUy-GFRs",
+  },
+  {
+    title: "Hell Yeah or No -- Derek Sivers",
+    url: "https://sive.rs/n",
+  },
+  {
+    title: "Your Life in weeks --Tim Urban",
+    url: "https://waitbutwhy.com/2014/05/life-weeks.html",
   },
 ];
 
