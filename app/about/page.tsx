@@ -8,7 +8,7 @@ import { Container } from "../components/Container";
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
-import { TextNotation } from "react-text-decorator";
+
 import { SocialText } from "../components/SocialText";
 import IDCard3D from "../components/IDCard3D";
 import GithubGraph from "../components/GithubStats";
@@ -35,73 +35,19 @@ const About = () => {
           <div className="lg:order-first lg:row-span-2">
             <Reveal>
               <h1 className="text-4xl font-bold tracking-tight">
-                Hey, I'm{" "}
-                <TextNotation
-                  type="highlight"
-                  color="#0096FF"
-                  show={true}
-                  iterations={6}
-                  strokeWidth={2}
-                  animationDuration={3400}
-                  animationDelay={4400}
-                >
-                  {" "}
-                  Shyam {" "}
-                </TextNotation>{" "}
-                — a Full Stack Developer from India with a passion for building
-                clean, creative, and scalable digital experiences.
+                I'm Shyam, a self-taught developer
               </h1>
             </Reveal>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <Reveal>
-                <p>
-                  Despite Graduating from a RoadSide college with Limited
-                  resources.I turned my constaints into oppurtunities. I was
-                  building my own curriculum through online courses,Youtube,
-                  open-source projects,Blogs, and countless nights debugging
-                  code until sunrise.#009
-                </p>
+                <p>I write code. I break things. I build better. I ship fast.</p>
               </Reveal>
               <Reveal>
+                {" "}
                 <p>
-                  As part of that journey, I even created an{" "}
-                  <a
-                    href="https://www.npmjs.com/package/react-text-decorator"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <TextNotation
-                      hover={true}
-                      type="highlight"
-                      iterations={6}
-                      strokeWidth={2}
-                      color="#0096FF"
-                      animationDelay={1000}
-                      animationDuration={1800}
-                    >
-                      {" "}
-                      <span className="text-blue-500 underline hover:text-blue-800">
-                        npm package
-                      </span>
-                    </TextNotation>
-                  </a>{" "}
-                  —{" "}
-                  <strong>
-                    <TextNotation
-                      type="underline"
-                      color="#0096FF"
-                      show={true}
-                      iterations={4}
-                      strokeWidth={2}
-                      animationDelay={5550}
-                      animationDuration={4000}
-                    >
-                      react-text-decorator
-                    </TextNotation>
-                  </strong>{" "}
-                  — that supports both React and Next.js . It's a lightweight
-                  tool for adding stylish text decorations, making UI writing
-                  cleaner and more expressive.
+                  I Graduated from a RoadSide college with Limited resources. I
+                  was building my own curriculum through online courses,Youtube,
+                  open-source projects,Blogs
                 </p>
               </Reveal>
               <Reveal>
@@ -109,14 +55,14 @@ const About = () => {
                   My learning playground? Twitter , GitHub repos, and Discord
                   Convos. I stay on top of the latest tech trends by being
                   active in online dev communities, constantly soaking up
-                  insights and experimenting with new tools. I love building
-                  sleek frontends, robust backends, and anything in between that
-                  turns ideas into real, usable products.
+                  insights and experimenting with new tools.
                 </p>
               </Reveal>
               <Reveal>
                 <div className="mt-8 mb-8">
-                  <h2 className="text-2xl font-bold text-center mb-4 text-zinc-800 dark:text-zinc-200">Proof of Work</h2>
+                  <h2 className="text-2xl font-bold text-center mb-4 text-zinc-800 dark:text-zinc-200">
+                    Proof of Work
+                  </h2>
                   <GithubGraph />
                 </div>
               </Reveal>

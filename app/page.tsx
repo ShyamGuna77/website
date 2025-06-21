@@ -27,23 +27,15 @@ const MusicPlayerSkeleton = () => (
   <div className="w-full h-[100px] bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg" />
 );
 
-export default function Home() {
+export default function Home() { 
   return (
     <Container className="mt-4 sm:mt-9">
       <div className="max-w-2xl mb-8 sm:mb-12">
         <Reveal>
           <h1 className="text-3xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            <TextNotation
-              type="highlight"
-              color="#0096FF"
-              animationDelay={2000}
-              animationDuration={4000}
-              show={true}
-              strokeWidth={3}
-              iterations={6}
-            >
+         
               <span>Frontend</span>
-            </TextNotation>
+            
             , backend, anime weekend
           </h1>
         </Reveal>
