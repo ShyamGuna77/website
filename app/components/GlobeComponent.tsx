@@ -89,57 +89,64 @@ const GlobeComponent = () => {
   useEffect(() => {
     setMounted(true);
 
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const userLocation = {
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-        };
+    // Function to fetch user location using ipapi.co
+    const fetchUserLocation = async () => {
+      try {
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
 
-        // Calculate distance
-        const dist = calculateDistance(
-          creatorLocation.lat,
-          creatorLocation.lng,
-          userLocation.lat,
-          userLocation.lng
-        );
-        setDistance(dist);
+        if (data.latitude && data.longitude) {
+          const userLocation = {
+            lat: data.latitude,
+            lng: data.longitude,
+          };
 
-        // Set locations
-        const newLocations = [
-          {
-            lat: creatorLocation.lat,
-            lng: creatorLocation.lng,
-            name: "Andhra Pradesh",
-            color: "#ef4444",
-            size: 20,
-          },
-          {
-            lat: userLocation.lat,
-            lng: userLocation.lng,
-            name: "Your Location",
-            color: "#22c55e",
-            size: 20,
-          },
-        ];
-        setLocations(newLocations);
+          // Calculate distance
+          const dist = calculateDistance(
+            creatorLocation.lat,
+            creatorLocation.lng,
+            userLocation.lat,
+            userLocation.lng
+          );
+          setDistance(dist);
 
-        // Create multiple arcs bHAI
-        const newArcs = [];
-        for (let i = 0; i < 3; i++) {
-          newArcs.push({
-            startLat: creatorLocation.lat,
-            startLng: creatorLocation.lng,
-            endLat: userLocation.lat,
-            endLng: userLocation.lng,
-            color: "#F70000",
-          });
+          // Set locations
+          const newLocations = [
+            {
+              lat: creatorLocation.lat,
+              lng: creatorLocation.lng,
+              name: "Andhra Pradesh",
+              color: "#ef4444",
+              size: 20,
+            },
+            {
+              lat: userLocation.lat,
+              lng: userLocation.lng,
+              name: "Your Location",
+              color: "#22c55e",
+              size: 20,
+            },
+          ];
+          setLocations(newLocations);
+
+          // Create multiple arcs
+          const newArcs = [];
+          for (let i = 0; i < 3; i++) {
+            newArcs.push({
+              startLat: creatorLocation.lat,
+              startLng: creatorLocation.lng,
+              endLat: userLocation.lat,
+              endLng: userLocation.lng,
+              color: "#F70000",
+            });
+          }
+          setArcs(newArcs);
+          setIsLoading(false);
+        } else {
+          throw new Error("Invalid location data received");
         }
-        setArcs(newArcs);
-        setIsLoading(false);
-      },
-      (err) => {
-        console.error("Geolocation error:", err);
+      } catch (error) {
+        console.error("IP API error:", error);
 
         const defaultLocation = {
           lat: 40.7128,
@@ -188,7 +195,10 @@ const GlobeComponent = () => {
         setArcs(newArcs);
         setIsLoading(false);
       }
-    );
+    };
+
+    // Call the function to fetch location
+    fetchUserLocation();
   }, []);
 
   useEffect(() => {
