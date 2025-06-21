@@ -422,7 +422,7 @@ const GlobeComponent = () => {
             <span className="font-semibold text-blue-600 dark:text-blue-400">
               {distance}{" "}
             </span>
-            kilometers from your current location.
+            kilometers from your current location, according to your IP address.
             {distance > 2000 && " That's quite a journey!"}
             {distance > 10000 &&
               " We're almost on opposite sides of the globe!"}
