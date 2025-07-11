@@ -12,12 +12,19 @@ const withMDX = nextMDX({
   },
 })
 
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Configure pageExtensions to include md and mdx
-  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   // Optionally, add any other Next.js config here
-};
+  experimental: {
+    optimizePackageImports: [
+      '@headlessui/react',
+      '@heroicons/react',
+      'lucide-react',
+      'react-icons',
+    ],
+  },
+}
 
-module.exports = withMDX(nextConfig);
+export default withMDX(nextConfig)
